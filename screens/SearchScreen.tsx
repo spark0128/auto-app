@@ -6,7 +6,7 @@ import { Button, ListItem } from 'react-native-elements';
 import { ListHeader } from '../components/Search/ListHeader';
 
 
-export default function SearchScreen() {
+export default function SearchScreen(props) {
 
   // TODO: Get popular brands from server
   const popularBrands = [
@@ -22,6 +22,15 @@ export default function SearchScreen() {
 
   const [search, setSearch] = useState('');
 
+  const onBrandClick = (brand) => {
+    return () => {
+      props.navigation.push('SelectModel', {
+        brandId: brand.id,
+        brandName: brand.name,
+      });
+    }
+  }
+
   return (
     <>
       <SearchBar
@@ -34,14 +43,16 @@ export default function SearchScreen() {
           return <ListItem
             key={brand.id}
             title={brand.name}
-            bottomDivider />;
+            bottomDivider
+            onPress={onBrandClick(brand)} />;
         })}
         <ListHeader title='Other brands' />
         {otherBrands.map((brand) => {
           return <ListItem
             key={brand.id}
             title={brand.name}
-            bottomDivider />;
+            bottomDivider
+            onPress={onBrandClick(brand)} />;
         })}
       </ScrollView>
       <Button

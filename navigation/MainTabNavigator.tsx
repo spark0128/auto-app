@@ -6,6 +6,7 @@ import { createBottomTabNavigator } from 'react-navigation-tabs';
 import TabBarIcon from '../components/TabBarIcon';
 import HomeScreen from '../screens/HomeScreen';
 import SearchScreen from '../screens/SearchScreen';
+import SelectModelScreen from '../screens/SelectModelScreen';
 import SellScreen from '../screens/SellScreen';
 import MyCollectionScreen from '../screens/MyCollectionScreen';
 import MyAccountScreen from '../screens/MyAccountScreen';
@@ -42,6 +43,7 @@ HomeStack.path = '';
 const SearchStack = createStackNavigator(
   {
     Search: SearchScreen,
+    SelectModel: SelectModelScreen,
   },
   config
 );
