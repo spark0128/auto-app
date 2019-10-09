@@ -20,8 +20,10 @@ export default function SearchScreen(props) {
     { id: '2', name: 'Lexus' },
   ];
 
+  // States
   const [search, setSearch] = useState('');
 
+  // Handlers
   const onBrandClick = (brand) => {
     return () => {
       props.navigation.push('SelectModel', {
@@ -29,6 +31,11 @@ export default function SearchScreen(props) {
         brandName: brand.name,
       });
     }
+  }
+
+  const onSearchButtonClick = () => {
+    // TODO: Pass search query option
+    props.navigation.push('SearchResult');
   }
 
   return (
@@ -57,7 +64,8 @@ export default function SearchScreen(props) {
       </ScrollView>
       <Button
         style={styles.searchButton}
-        title="Search (95,108 Cars)" />
+        title="Search (95,108 Cars)"
+        onPress={onSearchButtonClick} />
     </>
   );
 }

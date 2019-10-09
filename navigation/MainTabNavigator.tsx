@@ -7,6 +7,8 @@ import TabBarIcon from '../components/TabBarIcon';
 import HomeScreen from '../screens/HomeScreen';
 import SearchScreen from '../screens/SearchScreen';
 import SelectModelScreen from '../screens/SelectModelScreen';
+import SelectModelDetailScreen from '../screens/SelectModelDetailScreen';
+import SearchResultScreen from '../screens/SearchResultScreen';
 import SellScreen from '../screens/SellScreen';
 import MyCollectionScreen from '../screens/MyCollectionScreen';
 import MyAccountScreen from '../screens/MyAccountScreen';
@@ -44,6 +46,8 @@ const SearchStack = createStackNavigator(
   {
     Search: SearchScreen,
     SelectModel: SelectModelScreen,
+    SelectModelDetail: SelectModelDetailScreen,
+    SearchResult: SearchResultScreen,
   },
   config
 );
