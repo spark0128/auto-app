@@ -4,16 +4,16 @@ import {
 } from 'react-native';
 import { ScrollView, StyleSheet } from 'react-native';
 
-export default function WishListScreen() {
+export default function SellScreen() {
   return (
     <ScrollView style={styles.container}>
-      <Text>Wishlist</Text>
+      <Text>Sell</Text>
     </ScrollView>
   );
 }
 
-WishListScreen.navigationOptions = {
-  title: 'Wishlist',
+SellScreen.navigationOptions = {
+  title: 'Sell',
 };
 
 const styles = StyleSheet.create({
