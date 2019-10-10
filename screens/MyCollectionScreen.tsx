@@ -4,16 +4,16 @@ import {
 } from 'react-native';
 import { ScrollView, StyleSheet } from 'react-native';
 
-export default function MessageScreen() {
+export default function MyCollectionScreen() {
   return (
     <ScrollView style={styles.container}>
-      <Text>Message</Text>
+      <Text>My Collection</Text>
     </ScrollView>
   );
 }
 
-MessageScreen.navigationOptions = {
-  title: 'Message',
+MyCollectionScreen.navigationOptions = {
+  title: 'My Collection',
 };
 
 const styles = StyleSheet.create({

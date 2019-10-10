@@ -1,14 +1,72 @@
-import React from 'react';
-import {
-  Text,
-} from 'react-native';
+import React, { useState } from 'react';
 import { ScrollView, StyleSheet } from 'react-native';
+import { SearchBar } from 'react-native-elements';
 
-export default function SearchScreen() {
+import { Button, ListItem } from 'react-native-elements';
+import { ListHeader } from '../components/Search/ListHeader';
+
+
+export default function SearchScreen(props) {
+
+  // TODO: Get popular brands from server
+  const popularBrands = [
+    { id: '1', name: 'Toyota' },
+    { id: '2', name: 'Lexus' },
+  ];
+
+  // TODO: Get other brands from server
+  const otherBrands = [
+    { id: '1', name: 'Toyota' },
+    { id: '2', name: 'Lexus' },
+  ];
+
+  // States
+  const [search, setSearch] = useState('');
+
+  // Handlers
+  const onBrandClick = (brand) => {
+    return () => {
+      props.navigation.push('SelectModel', {
+        brandId: brand.id,
+        brandName: brand.name,
+      });
+    }
+  }
+
+  const onSearchButtonClick = () => {
+    // TODO: Pass search query option
+    props.navigation.push('SearchResult');
+  }
+
   return (
-    <ScrollView style={styles.container}>
-      <Text>Search</Text>
-    </ScrollView>
+    <>
+      <SearchBar
+        placeholder="Search a car here."
+        onChangeText={(search) => setSearch(search)}
+        value={search} />
+      <ScrollView style={styles.container}>
+        <ListHeader title='Popular brands' />
+        {popularBrands.map((brand) => {
+          return <ListItem
+            key={brand.id}
+            title={brand.name}
+            bottomDivider
+            onPress={onBrandClick(brand)} />;
+        })}
+        <ListHeader title='Other brands' />
+        {otherBrands.map((brand) => {
+          return <ListItem
+            key={brand.id}
+            title={brand.name}
+            bottomDivider
+            onPress={onBrandClick(brand)} />;
+        })}
+      </ScrollView>
+      <Button
+        style={styles.searchButton}
+        title="Search (95,108 Cars)"
+        onPress={onSearchButtonClick} />
+    </>
   );
 }
 
@@ -19,7 +77,13 @@ SearchScreen.navigationOptions = {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    paddingTop: 15,
-    backgroundColor: '#fff',
+    backgroundColor: '#f5f5f5',
+  },
+  listHeader: {
+    flex: 1,
+    backgroundColor: '#f5f5f5',
+  },
+  searchButton: {
+    height: 46,
   },
 });

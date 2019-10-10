@@ -5,9 +5,12 @@ import { createBottomTabNavigator } from 'react-navigation-tabs';
 
 import TabBarIcon from '../components/TabBarIcon';
 import HomeScreen from '../screens/HomeScreen';
-import WishListScreen from '../screens/WishListScreen';
 import SearchScreen from '../screens/SearchScreen';
-import MessageScreen from '../screens/MessageScreen';
+import SelectModelScreen from '../screens/SelectModelScreen';
+import SelectModelDetailScreen from '../screens/SelectModelDetailScreen';
+import SearchResultScreen from '../screens/SearchResultScreen';
+import SellScreen from '../screens/SellScreen';
+import MyCollectionScreen from '../screens/MyCollectionScreen';
 import MyAccountScreen from '../screens/MyAccountScreen';
 
 const config: any = Platform.select({
@@ -37,32 +40,14 @@ HomeStack.navigationOptions = {
 HomeStack.path = '';
 
 /**
- * WishList
- */
-const WishListStack = createStackNavigator(
-  {
-    WishList: WishListScreen,
-  },
-  config
-);
-
-WishListStack.navigationOptions = {
-  tabBarLabel: 'Wishlist',
-  tabBarIcon: ({ focused }) => (
-    <TabBarIcon 
-      focused={focused} 
-      name={'md-heart'} />
-  ),
-};
-
-WishListStack.path = '';
-
-/**
  * Search
  */
 const SearchStack = createStackNavigator(
   {
     Search: SearchScreen,
+    SelectModel: SelectModelScreen,
+    SelectModelDetail: SelectModelDetailScreen,
+    SearchResult: SearchResultScreen,
   },
   config
 );
@@ -70,8 +55,8 @@ const SearchStack = createStackNavigator(
 SearchStack.navigationOptions = {
   tabBarLabel: 'Search',
   tabBarIcon: ({ focused }) => (
-    <TabBarIcon 
-      focused={focused} 
+    <TabBarIcon
+      focused={focused}
       name={'md-search'} />
   ),
 };
@@ -79,25 +64,46 @@ SearchStack.navigationOptions = {
 SearchStack.path = '';
 
 /**
- * Message
+ * Sell
  */
-const MessageStack = createStackNavigator(
+const SellStack = createStackNavigator(
   {
-    Message: MessageScreen,
+    Sell: SellScreen,
   },
   config
 );
 
-MessageStack.navigationOptions = {
-  tabBarLabel: 'Message',
+SellStack.navigationOptions = {
+  tabBarLabel: 'Sell',
   tabBarIcon: ({ focused }) => (
-    <TabBarIcon 
-      focused={focused} 
-      name={'md-notifications'} />
+    <TabBarIcon
+      focused={focused}
+      name={'md-add-circle-outline'} />
   ),
 };
 
-MessageStack.path = '';
+SellStack.path = '';
+
+/**
+ * Collection
+ */
+const MyCollectionStack = createStackNavigator(
+  {
+    MyCollection: MyCollectionScreen,
+  },
+  config
+);
+
+MyCollectionStack.navigationOptions = {
+  tabBarLabel: 'Collection',
+  tabBarIcon: ({ focused }) => (
+    <TabBarIcon
+      focused={focused}
+      name={'md-heart'} />
+  ),
+};
+
+MyCollectionStack.path = '';
 
 /**
  * My Account
@@ -112,7 +118,7 @@ const MyAccountStack = createStackNavigator(
 MyAccountStack.navigationOptions = {
   tabBarLabel: 'My Account',
   tabBarIcon: ({ focused }) => (
-    <TabBarIcon 
+    <TabBarIcon
       focused={focused}
       name={'md-person'} />
   ),
@@ -122,9 +128,9 @@ MyAccountStack.path = '';
 
 const tabNavigator = createBottomTabNavigator({
   HomeStack,
-  WishListStack,
   SearchStack,
-  MessageStack,
+  SellStack,
+  MyCollectionStack,
   MyAccountStack,
 });
 
