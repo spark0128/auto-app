@@ -15,7 +15,7 @@ export function Hero() {
 
 const styles = StyleSheet.create({
   container: {
-    height: 104,
+    height: 105,
     backgroundColor: 'red',
     justifyContent: 'center',
     alignContent: 'center',
