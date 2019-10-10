@@ -1,23 +1,35 @@
-import React from 'react';
-import {
-  ScrollView,
-  StyleSheet,
-  View,
-} from 'react-native';
+import React from "react";
+import { ScrollView, StyleSheet, View } from "react-native";
 
-import colors from '../constants/Colors';
-import { Hero } from '../components/Home/Hero';
-import { MostRecommended } from '../components/Home/MostRecommended';
-import { MostViewed } from '../components/Home/MostViewed';
-import { FeaturedCarCard } from '../components/Home/FeaturedCarCard';
+import colors from "../constants/Colors";
+import { Hero } from "../components/Home/Hero";
+import { MostRecommended } from "../components/Home/MostRecommended";
+import { MostViewed } from "../components/Home/MostViewed";
+import { FeaturedCarCard } from "../components/Home/FeaturedCarCard";
 
 export default function HomeScreen() {
   // TODO: Get most recommended cars from server
   // TODO: Get most viewed cars from server
   // TODO: Get featured cars from server
   const featuredCars = [
-    { id: '1', name: 'LEXUS LX300' },
-    { id: '2', name: 'TOYOTA Camry' },
+    {
+      id: "1",
+      name: "LEXUS LX300",
+      mileage: 43000,
+      year: "2015",
+      city: "Phnom Penh",
+      postedAt: "5 days ago",
+      numViews: 25
+    },
+    {
+      id: "2",
+      name: "TOYOTA Camry",
+      mileage: 80000,
+      year: "2012",
+      city: "Phnom Penh",
+      postedAt: "6 days ago",
+      numViews: 48
+    }
   ];
 
   return (
@@ -27,23 +39,25 @@ export default function HomeScreen() {
         <MostRecommended />
         <View style={{ height: 10 }} />
         <MostViewed />
-        {featuredCars.map((car) => <FeaturedCarCard key={car.id} car={car} />)}
+        {featuredCars.map((car) => (
+          <FeaturedCarCard key={car.id} car={car} />
+        ))}
       </ScrollView>
     </View>
   );
 }
 
 HomeScreen.navigationOptions = {
-  title: 'Automate',
+  title: "Automate",
   headerStyle: {
-    backgroundColor: colors.primaryColor,
+    backgroundColor: colors.primaryColor
   },
-  headerTintColor: 'white',
+  headerTintColor: "white"
 };
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#f2f2f2',
-  },
+    backgroundColor: "#f2f2f2"
+  }
 });

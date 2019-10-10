@@ -1,9 +1,5 @@
-import React from 'react';
-import {
-  View,
-  StyleSheet,
-  Text,
-} from 'react-native';
+import React from "react";
+import { View, StyleSheet, Text } from "react-native";
 
 export function MostRecommended() {
   return (
@@ -16,8 +12,10 @@ export function MostRecommended() {
 const styles = StyleSheet.create({
   container: {
     height: 290,
-    backgroundColor: 'yellow',
-    justifyContent: 'center',
-    alignContent: 'center',
-  },
+    backgroundColor: "yellow",
+    justifyContent: "center",
+    alignContent: "center",
+    borderBottomColor: "#D3D3D3",
+    borderWidth: 1
+  }
 });

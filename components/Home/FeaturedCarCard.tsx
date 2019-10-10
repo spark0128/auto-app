@@ -1,25 +1,129 @@
-import React from 'react';
+import React from "react";
+import { View, StyleSheet, Text, Image } from "react-native";
 import {
-  View,
-  StyleSheet,
-  Text,
-} from 'react-native';
+  TouchableOpacity,
+  TouchableWithoutFeedback
+} from "react-native-gesture-handler";
 
 export function FeaturedCarCard({ car }) {
   return (
     <View style={styles.container}>
-      <Text>FeaturedCarCard Section</Text>
-      <Text>{`id: ${car.id}, name: ${car.name}`}</Text>
+      <Image
+        style={styles.cardImage}
+        source={{
+          uri: "https://i.imgur.com/h86ZbQG.png"
+        }}
+      />
+      <View style={styles.textContainer}>
+        <View style={styles.cardFirstLine}>
+          <Text style={styles.cardName}>{car.name}</Text>
+          <TouchableWithoutFeedback>
+            <Image
+              style={styles.liked}
+              source={{ uri: "https://i.imgur.com/iqcK0sq.png" }}
+            />
+          </TouchableWithoutFeedback>
+        </View>
+        <View style={styles.cardSecondLine}>
+          <Text
+            style={styles.cardInfo}
+          >{`${car.mileage}km \u00B7 ${car.year} \u00B7 ${car.city}`}</Text>
+          <View style={styles.subInfo}>
+            <View style={styles.postedAt}>
+              <Image
+                style={styles.bgPostedAt}
+                source={{ uri: "https://i.imgur.com/agzM3uc.png" }}
+              />
+              <Text style={styles.textPostedAt}>{car.postedAt}</Text>
+            </View>
+            <View style={styles.views}>
+              <Image
+                style={styles.bgViews}
+                source={{ uri: "https://i.imgur.com/FQvdzZj.png" }}
+              />
+              <Text style={styles.textViews}>{car.numViews}</Text>
+            </View>
+          </View>
+        </View>
+      </View>
+      <View
+        style={{
+          width: "100%",
+          height: 10,
+          backgroundColor: "#F2F2F2",
+          borderTopColor: "#D3D3D3",
+          borderTopWidth: 1
+        }}
+      />
     </View>
   );
 }
 
 const styles = StyleSheet.create({
   container: {
-    marginTop: 10,
-    height: 340,
-    backgroundColor: 'gray',
-    justifyContent: 'center',
-    alignContent: 'center',
+    backgroundColor: "#fff",
+    justifyContent: "center",
+    alignContent: "center"
   },
+  cardImage: {
+    width: "100%",
+    aspectRatio: 4 / 3
+  },
+  textContainer: {
+    paddingVertical: 10,
+    paddingHorizontal: 14
+  },
+  cardFirstLine: {
+    flexDirection: "row",
+    justifyContent: "space-between",
+    alignItems: "flex-start"
+  },
+  cardName: {
+    fontSize: 15,
+    fontWeight: "500",
+    marginBottom: 9
+  },
+  liked: {
+    width: 20,
+    height: 17.5
+  },
+  cardSecondLine: {
+    flexDirection: "row",
+    justifyContent: "space-between",
+    alignItems: "baseline"
+  },
+  cardInfo: {
+    fontSize: 11,
+    color: "#606060"
+  },
+  subInfo: {
+    flexDirection: "row"
+  },
+  postedAt: {
+    flexDirection: "row"
+  },
+  bgPostedAt: {
+    width: 11,
+    height: 11,
+    marginTop: 1,
+    marginRight: 4
+  },
+  textPostedAt: {
+    fontSize: 11,
+    color: "#606060"
+  },
+  views: {
+    flexDirection: "row",
+    marginLeft: 7
+  },
+  bgViews: {
+    width: 15,
+    height: 9.5,
+    marginTop: 2.3,
+    marginRight: 4
+  },
+  textViews: {
+    fontSize: 11,
+    color: "#606060"
+  }
 });
