@@ -15,6 +15,7 @@ export default function HomeScreen() {
     {
       id: "1",
       name: "LEXUS LX300",
+      price: 11500,
       mileage: 43000,
       year: "2015",
       city: "Phnom Penh",
@@ -24,6 +25,7 @@ export default function HomeScreen() {
     {
       id: "2",
       name: "TOYOTA Camry",
+      price: 33500,
       mileage: 80000,
       year: "2012",
       city: "Phnom Penh",

@@ -8,12 +8,17 @@ import {
 export function FeaturedCarCard({ car }) {
   return (
     <View style={styles.container}>
-      <Image
-        style={styles.cardImage}
-        source={{
-          uri: "https://i.imgur.com/h86ZbQG.png"
-        }}
-      />
+      <View style={styles.imageContainer}>
+        <Image
+          style={styles.cardImage}
+          source={{
+            uri: "https://i.imgur.com/h86ZbQG.png"
+          }}
+        />
+        <View style={styles.priceContainer}>
+          <Text style={styles.textPrice}>{`$${car.price}`}</Text>
+        </View>
+      </View>
       <View style={styles.textContainer}>
         <View style={styles.cardFirstLine}>
           <Text style={styles.cardName}>{car.name}</Text>
@@ -65,9 +70,25 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     alignContent: "center"
   },
+  imageContainer: {
+    width: "100%",
+    aspectRatio: 4 / 3,
+    position: "relative"
+  },
   cardImage: {
     width: "100%",
-    aspectRatio: 4 / 3
+    height: "100%"
+  },
+  priceContainer: {
+    position: "absolute",
+    bottom: 0,
+    paddingHorizontal: 12,
+    paddingVertical: 5.5,
+    backgroundColor: "#000"
+  },
+  textPrice: {
+    color: "#fff",
+    fontSize: 20
   },
   textContainer: {
     paddingVertical: 10,
