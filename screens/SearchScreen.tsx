@@ -10,14 +10,14 @@ import {
 } from "react-native";
 
 import Button from "../common/Button";
-import { ListItem } from "react-native-elements";
+import { ListItem, Avatar } from "react-native-elements";
 import { ListHeader } from "../components/Search/ListHeader";
 
 export default function SearchScreen(props) {
   // TODO: Get popular brands from server
   const popularBrands = [
-    { id: "1", name: "Toyota" },
-    { id: "2", name: "Lexus" }
+    { id: "1", name: "Toyota", avatar_url: "https://i.imgur.com/3PpGDOh.png" },
+    { id: "2", name: "Lexus", avatar_url: "https://i.imgur.com/jTxYza7.png" }
   ];
 
   // TODO: Get other brands from server
@@ -48,7 +48,7 @@ export default function SearchScreen(props) {
           <Text style={styles.activeTabItem}>Brand</Text>
         </View>
         <View style={styles.tabContainer}>
-          <Text style={styles.tabItem}>Size</Text>
+          <Text style={styles.tabItem}>By Size</Text>
         </View>
       </View>
       <ScrollView style={styles.container}>
@@ -60,6 +60,8 @@ export default function SearchScreen(props) {
               title={brand.name}
               bottomDivider
               onPress={onBrandClick(brand)}
+              titleStyle={{ fontSize: 14.5, fontWeight: "500" }}
+              leftAvatar={{ source: { uri: brand.avatar_url } }}
             />
           );
         })}
@@ -71,6 +73,7 @@ export default function SearchScreen(props) {
               title={brand.name}
               bottomDivider
               onPress={onBrandClick(brand)}
+              titleStyle={{ fontSize: 14.5, fontWeight: "500" }}
             />
           );
         })}
