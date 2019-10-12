@@ -4,6 +4,16 @@ import { ScrollView, StyleSheet } from "react-native";
 import Button from "../common/Button";
 
 export default function SellScreen() {
+  // Handlers
+  const onSellButtonClick = () => {
+    return () => {
+      props.navigation.push("SelectModelDetail", {
+        modelId: model.id,
+        modelName: model.name
+      });
+    };
+  };
+
   return (
     <>
       <ScrollView style={styles.container}>
