@@ -1,10 +1,14 @@
 import React from "react";
-import { View, Text, Image, StyleSheet } from "react-native";
+import { View, Text, TextInput, StyleSheet } from "react-native";
 
 export function TextInputWithUnit(props) {
   return (
     <View style={[styles.container, props.containerWidth]}>
-      <Text style={styles.name}>{props.name}</Text>
+      <TextInput
+        placeholder={props.name}
+        placeholderTextColor="#9A9A9A"
+        style={styles.name}
+      />
       <Text style={styles.unit}>{props.unit}</Text>
     </View>
   );
@@ -23,7 +27,6 @@ const styles = StyleSheet.create({
     flexDirection: "row"
   },
   name: {
-    color: "#9A9A9A",
     fontSize: 15
   },
   unit: {

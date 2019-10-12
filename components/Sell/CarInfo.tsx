@@ -12,6 +12,9 @@ import { Select } from "../../common/Select";
 import { TextInputWithUnit } from "../../common/TextInputWithUnit";
 
 export default function CarInfo() {
+  // TODO: Text Validation
+  // TODO: Screen move up when keyboard popup
+
   const [checked, setChecked] = useState([]);
 
   const screenWidth = Math.round(Dimensions.get("window").width);
