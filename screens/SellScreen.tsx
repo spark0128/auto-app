@@ -1,25 +1,43 @@
-import React from 'react';
-import {
-  Text,
-} from 'react-native';
-import { ScrollView, StyleSheet } from 'react-native';
+import React from "react";
+import { Text } from "react-native";
+import { ScrollView, StyleSheet } from "react-native";
+import Button from "../common/Button";
 
 export default function SellScreen() {
   return (
-    <ScrollView style={styles.container}>
-      <Text>Sell</Text>
-    </ScrollView>
+    <>
+      <ScrollView style={styles.container}>
+        <Text>Infography</Text>
+      </ScrollView>
+      <Button
+        viewStyle={styles.bgSearchButton}
+        style={styles.textSearchButton}
+        onPress={() => {}}
+      >
+        Let's Go
+      </Button>
+    </>
   );
 }
 
 SellScreen.navigationOptions = {
-  title: 'Sell',
+  title: "Sell Your Car"
 };
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
     paddingTop: 15,
-    backgroundColor: '#fff',
+    backgroundColor: "#fff"
   },
+  bgSearchButton: {
+    backgroundColor: "#2270E7",
+    justifyContent: "center",
+    alignItems: "center"
+  },
+  textSearchButton: {
+    color: "#fff",
+    fontSize: 16,
+    fontWeight: "500"
+  }
 });

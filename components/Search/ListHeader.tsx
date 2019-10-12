@@ -1,14 +1,10 @@
-import React from 'react';
-import {
-  View,
-  Text,
-  StyleSheet,
-} from 'react-native';
+import React from "react";
+import { View, Text, StyleSheet } from "react-native";
 
 export function ListHeader({ title }) {
   return (
     <View style={styles.container}>
-      <Text>{title}</Text>
+      <Text style={styles.text}>{title}</Text>
     </View>
   );
 }
@@ -16,9 +12,13 @@ export function ListHeader({ title }) {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    height: 40,
-    paddingLeft: 16,
-    justifyContent: 'center',
-    alignContent: 'center',
+    height: 38,
+    paddingLeft: 17,
+    justifyContent: "center",
+    alignContent: "center"
   },
+  text: {
+    color: "#9B9B9B",
+    fontSize: 12.5
+  }
 });

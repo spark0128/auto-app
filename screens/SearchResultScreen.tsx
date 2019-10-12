@@ -1,14 +1,12 @@
-import React from 'react';
-import { ScrollView, StyleSheet } from 'react-native';
-import { ButtonGroup } from 'react-native-elements';
-import { FeaturedCarCard } from '../components/Home/FeaturedCarCard';
+import React from "react";
+import { ScrollView, StyleSheet } from "react-native";
+import { ButtonGroup } from "react-native-elements";
+import { FeaturedCarCard } from "../components/Home/FeaturedCarCard";
+import FilterOrderButton from "../common/FilterOrderButton";
 
 export default function SearchResultScreen() {
-
   // TODO: Search cars from selected query
-  const cars = [
-    { id: '1', name: 'LEXUS LX300' },
-  ];
+  const cars = [{ id: "1", name: "LEXUS LX300" }];
 
   // Handlers
   const onFloatingButtonClick = (index) => {
@@ -17,39 +15,29 @@ export default function SearchResultScreen() {
     } else if (index === 1) {
       console.log("order button clicked");
     }
-  }
+  };
 
   return (
     <>
       <ScrollView style={styles.container}>
         {cars.map((car) => {
-          return <FeaturedCarCard key={car.id} car={car} />
+          return <FeaturedCarCard key={car.id} car={car} />;
         })}
       </ScrollView>
-      <ButtonGroup
-        containerStyle={styles.floatingButton}
-        onPress={onFloatingButtonClick}
-        buttons={['Filter', 'Order']} />
+      <FilterOrderButton />
     </>
   );
 }
 
 SearchResultScreen.navigationOptions = () => {
   return {
-    title: 'Searched Result',
-  }
-}
+    title: "Searched Result"
+  };
+};
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#f5f5f5',
-  },
-  floatingButton: {
-    position: 'absolute',
-    width: 148,
-    height: 30,
-    bottom: 10,
-    alignSelf: 'center'
-  },
+    backgroundColor: "#f5f5f5"
+  }
 });
