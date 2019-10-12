@@ -8,7 +8,7 @@ export function MostRecommended() {
         <Image
           style={styles.carImage}
           source={{
-            uri: "https://i.imgur.com/8FS83yQ.png"
+            uri: "https://i.imgur.com/1gsClCq.jpg"
           }}
         />
       </View>

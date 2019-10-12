@@ -1,31 +1,30 @@
 import React from "react";
 import { Text } from "react-native";
 import { ScrollView, StyleSheet } from "react-native";
-import Button from "../common/Button";
+import { Button } from "../common/Button";
+import CarInfo from "../components/Sell/CarInfo";
 
-export default function SellScreen() {
+export default function SellScreen(props) {
   // Handlers
   const onSellButtonClick = () => {
     return () => {
-      props.navigation.push("SelectModelDetail", {
-        modelId: model.id,
-        modelName: model.name
-      });
+      props.navigation.push("CarInfo");
     };
   };
 
   return (
     <>
-      <ScrollView style={styles.container}>
+      {/* <ScrollView style={styles.container}>
         <Text>Infography</Text>
       </ScrollView>
       <Button
-        viewStyle={styles.bgSearchButton}
-        style={styles.textSearchButton}
-        onPress={() => {}}
+        containerStyle={styles.searchButtonContainer}
+        style={styles.searchButton}
+        onPress={onSellButtonClick}
       >
         Let's Go
-      </Button>
+      </Button> */}
+      <CarInfo />
     </>
   );
 }
@@ -40,12 +39,12 @@ const styles = StyleSheet.create({
     paddingTop: 15,
     backgroundColor: "#fff"
   },
-  bgSearchButton: {
+  searchButtonContainer: {
     backgroundColor: "#2270E7",
     justifyContent: "center",
     alignItems: "center"
   },
-  textSearchButton: {
+  searchButton: {
     color: "#fff",
     fontSize: 16,
     fontWeight: "500"

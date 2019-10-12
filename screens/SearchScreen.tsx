@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import {
   View,
-  FlatList,
   ScrollView,
   StyleSheet,
   Platform,
@@ -9,7 +8,7 @@ import {
   Text
 } from "react-native";
 
-import Button from "../common/Button";
+import { Button } from "../common/Button";
 import { ListItem, Avatar } from "react-native-elements";
 import { ListHeader } from "../components/Search/ListHeader";
 
@@ -79,7 +78,7 @@ export default function SearchScreen(props) {
         })}
       </ScrollView>
       <Button
-        viewStyle={styles.bgSearchButton}
+        containerStyle={styles.bgSearchButton}
         style={styles.textSearchButton}
         onPress={onSearchButtonClick}
       >
@@ -90,7 +89,6 @@ export default function SearchScreen(props) {
 }
 
 SearchScreen.navigationOptions = {
-  // title: "Search"
   header: (
     <View
       style={{

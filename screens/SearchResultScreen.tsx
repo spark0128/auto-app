@@ -1,6 +1,5 @@
 import React from "react";
 import { ScrollView, StyleSheet } from "react-native";
-import { ButtonGroup } from "react-native-elements";
 import { FeaturedCarCard } from "../components/Home/FeaturedCarCard";
 import FilterOrderButton from "../common/FilterOrderButton";
 
