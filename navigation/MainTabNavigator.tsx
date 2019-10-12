@@ -1,21 +1,22 @@
-import React from 'react';
-import { Platform } from 'react-native';
-import { createStackNavigator } from 'react-navigation-stack';
-import { createBottomTabNavigator } from 'react-navigation-tabs';
+import React from "react";
+import { Platform } from "react-native";
+import { createStackNavigator } from "react-navigation-stack";
+import { createBottomTabNavigator } from "react-navigation-tabs";
 
-import TabBarIcon from '../components/TabBarIcon';
-import HomeScreen from '../screens/HomeScreen';
-import SearchScreen from '../screens/SearchScreen';
-import SelectModelScreen from '../screens/SelectModelScreen';
-import SelectModelDetailScreen from '../screens/SelectModelDetailScreen';
-import SearchResultScreen from '../screens/SearchResultScreen';
-import SellScreen from '../screens/SellScreen';
-import MyCollectionScreen from '../screens/MyCollectionScreen';
-import MyAccountScreen from '../screens/MyAccountScreen';
+import TabBarIcon from "../components/TabBarIcon";
+import HomeScreen from "../screens/HomeScreen";
+import SearchScreen from "../screens/SearchScreen";
+import SelectModelScreen from "../screens/SelectModelScreen";
+import SelectModelDetailScreen from "../screens/SelectModelDetailScreen";
+import SearchResultScreen from "../screens/SearchResultScreen";
+import SellScreen from "../screens/SellScreen";
+import CarInfoScreen from "../screens/CarInfoScreen";
+import MyCollectionScreen from "../screens/MyCollectionScreen";
+import MyAccountScreen from "../screens/MyAccountScreen";
 
 const config: any = Platform.select({
-  web: { headerMode: 'screen' },
-  default: {},
+  web: { headerMode: "screen" },
+  default: {}
 });
 
 /**
@@ -23,21 +24,17 @@ const config: any = Platform.select({
  */
 const HomeStack = createStackNavigator(
   {
-    Home: HomeScreen,
+    Home: HomeScreen
   },
-  config,
+  config
 );
 
 HomeStack.navigationOptions = {
-  tabBarLabel: 'Home',
-  tabBarIcon: ({ focused }) => (
-    <TabBarIcon
-      focused={focused}
-      name={'md-home'} />
-  ),
+  tabBarLabel: "Home",
+  tabBarIcon: ({ focused }) => <TabBarIcon focused={focused} name={"md-home"} />
 };
 
-HomeStack.path = '';
+HomeStack.path = "";
 
 /**
  * Search
@@ -47,21 +44,19 @@ const SearchStack = createStackNavigator(
     Search: SearchScreen,
     SelectModel: SelectModelScreen,
     SelectModelDetail: SelectModelDetailScreen,
-    SearchResult: SearchResultScreen,
+    SearchResult: SearchResultScreen
   },
   config
 );
 
 SearchStack.navigationOptions = {
-  tabBarLabel: 'Search',
+  tabBarLabel: "Search",
   tabBarIcon: ({ focused }) => (
-    <TabBarIcon
-      focused={focused}
-      name={'md-search'} />
-  ),
+    <TabBarIcon focused={focused} name={"md-search"} />
+  )
 };
 
-SearchStack.path = '';
+SearchStack.path = "";
 
 /**
  * Sell
@@ -69,69 +64,64 @@ SearchStack.path = '';
 const SellStack = createStackNavigator(
   {
     Sell: SellScreen,
+    CarInfo: CarInfoScreen
   },
   config
 );
 
 SellStack.navigationOptions = {
-  tabBarLabel: 'Sell',
+  tabBarLabel: "Sell",
   tabBarIcon: ({ focused }) => (
-    <TabBarIcon
-      focused={focused}
-      name={'md-add-circle-outline'} />
-  ),
+    <TabBarIcon focused={focused} name={"md-add-circle-outline"} />
+  )
 };
 
-SellStack.path = '';
+SellStack.path = "";
 
 /**
  * Collection
  */
 const MyCollectionStack = createStackNavigator(
   {
-    MyCollection: MyCollectionScreen,
+    MyCollection: MyCollectionScreen
   },
   config
 );
 
 MyCollectionStack.navigationOptions = {
-  tabBarLabel: 'Collection',
+  tabBarLabel: "Collection",
   tabBarIcon: ({ focused }) => (
-    <TabBarIcon
-      focused={focused}
-      name={'md-heart'} />
-  ),
+    <TabBarIcon focused={focused} name={"md-heart"} />
+  )
 };
 
-MyCollectionStack.path = '';
+MyCollectionStack.path = "";
 
 /**
  * My Account
  */
 const MyAccountStack = createStackNavigator(
   {
-    MyAccount: MyAccountScreen,
+    MyAccount: MyAccountScreen
   },
   config
 );
 
 MyAccountStack.navigationOptions = {
-  tabBarLabel: 'My Account',
+  tabBarLabel: "My Account",
   tabBarIcon: ({ focused }) => (
-    <TabBarIcon
-      focused={focused}
-      name={'md-person'} />
-  ),
+    <TabBarIcon focused={focused} name={"md-person"} />
+  )
 };
 
-MyAccountStack.path = '';
+MyAccountStack.path = "";
 
 const tabNavigator = createBottomTabNavigator({
   HomeStack,
   SearchStack,
   SellStack,
   MyCollectionStack,
-  MyAccountStack,
+  MyAccountStack
 });
 
 export default tabNavigator;

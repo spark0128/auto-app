@@ -39,7 +39,7 @@ export default function HomeScreen() {
       <ScrollView style={styles.container}>
         <Hero />
         <MostRecommended />
-        <View style={{ height: 10 }} />
+        <View style={{ backgroundColor: "#F2F2F2", height: 10 }} />
         <MostViewed />
         {featuredCars.map((car) => (
           <FeaturedCarCard key={car.id} car={car} />

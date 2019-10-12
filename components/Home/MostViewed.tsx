@@ -1,14 +1,10 @@
-import React from 'react';
-import {
-  View,
-  StyleSheet,
-  Text,
-} from 'react-native';
+import React from "react";
+import { View, StyleSheet, Text } from "react-native";
 
 export function MostViewed() {
   return (
     <View style={styles.container}>
-      <Text>MostViewed Section</Text>
+      <Text>Most Viewed Section</Text>
     </View>
   );
 }
@@ -16,8 +12,8 @@ export function MostViewed() {
 const styles = StyleSheet.create({
   container: {
     height: 512,
-    backgroundColor: 'green',
-    justifyContent: 'center',
-    alignContent: 'center',
-  },
+    backgroundColor: "green",
+    justifyContent: "center",
+    alignContent: "center"
+  }
 });
