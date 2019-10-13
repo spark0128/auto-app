@@ -1,7 +1,7 @@
 import React from "react";
 import { View, Text, TextInput, StyleSheet } from "react-native";
 
-export function TextInputWithUnit(props) {
+export function TextInputBase(props) {
   return (
     <View style={[styles.container, props.containerWidth]}>
       <TextInput
