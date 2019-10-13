@@ -18,6 +18,7 @@ import MyAccountNotLoggedInScreen from "../screens/MyAccountNotLoggedInScreen";
 import LoginScreen from "../screens/LoginScreen";
 import LoginFormScreen from "../screens/LoginFormScreen";
 import SignupScreen from "../screens/SignupScreen";
+import { FindPasswordScreen } from "../screens/FindPasswordScreen";
 
 const config: any = Platform.select({
   web: { headerMode: "screen" },
@@ -69,7 +70,7 @@ SearchStack.path = "";
 const SellStack = createStackNavigator(
   {
     Sell: SellScreen,
-    CarInfo: CarInfoScreen,
+    CarInfo: CarInfoScreen
   },
   config
 );
@@ -107,7 +108,7 @@ MyCollectionStack.path = "";
  */
 const MyAccountStack = createStackNavigator(
   {
-    MyAccount: SignupScreen
+    MyAccount: FindPasswordScreen
   },
   config
 );
@@ -139,14 +140,14 @@ const MainStack = createStackNavigator(
   {
     Tab: {
       screen: TabNavigator,
-      navigationOptions: { header: null },
+      navigationOptions: { header: null }
     },
     SelectPhoto: {
-      screen: SelectPhotoScreen,
-    },
+      screen: SelectPhotoScreen
+    }
   },
   {
-    mode: 'modal',
+    mode: "modal"
   }
 );
 

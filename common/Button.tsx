@@ -14,6 +14,8 @@ export function Button(props) {
 export function PaddedButton(props) {
   return (
     // TODO: 0 when not active , blue and 0.8 when active
+    // style - backgroundColor, paddingVertical
+    // Make Primary and Secondary (paddingVertical 24)
     <TouchableOpacity>
       <View style={[styles.buttonContainer, props.style]}>
         <Text style={styles.buttonText}>{props.children}</Text>
