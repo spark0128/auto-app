@@ -1,12 +1,8 @@
 import React from "react";
-import { View, Text } from "react-native";
+import CarInfo from "../components/Sell/CarInfo";
 
-export default function CarInfoScreen() {
-  return (
-    <View>
-      <Text></Text>
-    </View>
-  );
+export default function CarInfoScreen(props) {
+  return <CarInfo navigation={props.navigation} />;
 }
 
 CarInfoScreen.navigationOptions = () => {

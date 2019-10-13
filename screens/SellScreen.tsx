@@ -2,29 +2,24 @@ import React from "react";
 import { Text } from "react-native";
 import { ScrollView, StyleSheet } from "react-native";
 import { Button } from "../common/Button";
-import CarInfo from "../components/Sell/CarInfo";
 
 export default function SellScreen(props) {
   // Handlers
   const onSellButtonClick = () => {
-    return () => {
-      props.navigation.push("CarInfo");
-    };
+    props.navigation.push("CarInfo");
   };
 
   return (
     <>
-      {/* <ScrollView style={styles.container}>
+      <ScrollView style={styles.container}>
         <Text>Infography</Text>
       </ScrollView>
       <Button
         containerStyle={styles.searchButtonContainer}
         style={styles.searchButton}
-        onPress={onSellButtonClick}
-      >
+        onPress={onSellButtonClick}>
         Let's Go
-      </Button> */}
-      <CarInfo />
+      </Button>
     </>
   );
 }

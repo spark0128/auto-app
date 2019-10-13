@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import {
   View,
   ScrollView,
@@ -6,12 +6,15 @@ import {
   StyleSheet,
   Image,
   Dimensions,
-  CheckBox
+  CheckBox,
+  TouchableOpacity,
 } from "react-native";
 import { Select } from "../../common/Select";
 import { TextInputWithUnit } from "../../common/TextInputWithUnit";
+import Constants from 'expo-constants';
+import * as Permissions from 'expo-permissions';
 
-export default function CarInfo() {
+export default function CarInfo(props) {
   // TODO: Text Validation
   // TODO: Screen move up when keyboard popup
 
@@ -20,16 +23,27 @@ export default function CarInfo() {
   const screenWidth = Math.round(Dimensions.get("window").width);
   const paddingHorizontal = 15;
 
+  const onPhotoClick = async () => {
+    if (Constants.platform.ios) {
+      const { status } = await Permissions.askAsync(Permissions.CAMERA_ROLL);
+      if (status !== 'granted') {
+        alert('Sorry, we need camera roll permissions to make this work!');
+        return;
+      }
+    }
+    props.navigation.navigate('SelectPhoto');
+  };
+
   return (
     <ScrollView>
       <View style={styles.container}>
         <Text style={styles.title}>Car Information</Text>
-        <View style={styles.photoUploadContainer}>
+        <TouchableOpacity style={styles.photoUploadContainer} onPress={onPhotoClick}>
           <Text style={styles.photoTitle}>Car Photos Upload</Text>
           <Text style={styles.photoSubTitle}>
             Please upload in order (Min. 5 photos).
           </Text>
-        </View>
+        </TouchableOpacity>
         <Text style={styles.photoGuideText}>See Our Photo Guide</Text>
         <View style={styles.sectionContainer}>
           <Text style={styles.sectionTitle}>Basic Information</Text>

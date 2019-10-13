@@ -11,6 +11,7 @@ import SelectModelDetailScreen from "../screens/SelectModelDetailScreen";
 import SearchResultScreen from "../screens/SearchResultScreen";
 import SellScreen from "../screens/SellScreen";
 import CarInfoScreen from "../screens/CarInfoScreen";
+import SelectPhotoScreen from "../screens/SelectPhotoScreen";
 import MyCollectionScreen from "../screens/MyCollectionScreen";
 import MyAccountScreen from "../screens/MyAccountScreen";
 
@@ -64,7 +65,7 @@ SearchStack.path = "";
 const SellStack = createStackNavigator(
   {
     Sell: SellScreen,
-    CarInfo: CarInfoScreen
+    CarInfo: CarInfoScreen,
   },
   config
 );
@@ -116,7 +117,10 @@ MyAccountStack.navigationOptions = {
 
 MyAccountStack.path = "";
 
-const tabNavigator = createBottomTabNavigator({
+/**
+ * Tab
+ */
+const TabNavigator = createBottomTabNavigator({
   HomeStack,
   SearchStack,
   SellStack,
@@ -124,4 +128,22 @@ const tabNavigator = createBottomTabNavigator({
   MyAccountStack
 });
 
-export default tabNavigator;
+/**
+ * Main
+ */
+const MainStack = createStackNavigator(
+  {
+    Tab: {
+      screen: TabNavigator,
+      navigationOptions: { header: null },
+    },
+    SelectPhoto: {
+      screen: SelectPhotoScreen,
+    },
+  },
+  {
+    mode: 'modal',
+  }
+);
+
+export default MainStack;

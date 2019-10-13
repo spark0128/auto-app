@@ -13,6 +13,8 @@
     "expo": "^35.0.0",
     "expo-asset": "^7.0.0",
     "expo-font": "^7.0.0",
+    "expo-media-library": "~7.0.0",
+    "lodash": "^4.17.15",
     "react": "16.8.3",
     "react-devtools": "^3.6.3",
     "react-dom": "16.8.3",
