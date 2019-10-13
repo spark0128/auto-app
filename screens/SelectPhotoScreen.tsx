@@ -8,9 +8,11 @@ import {
   Text,
   Dimensions,
 } from "react-native";
+import { useDispatch } from "react-redux";
 import * as MediaLibrary from 'expo-media-library';
 import HeaderIcon from "../components/HeaderIcon";
 import ImageTile from "../components/SelectPhoto/ImageTile";
+import { savePhotos } from "../redux/actions/SellYourCarActions";
 
 const { width } = Dimensions.get('window');
 const MAX = 12;
@@ -26,6 +28,9 @@ export default function SelectPhotoScreen(props) {
   const [selected, setSelected] = useState([]);
   const [after, setAfter] = useState("");
   const [hasNextPage, setHasNextPage] = useState(true);
+
+  // Redux
+  const dispatch = useDispatch();
 
   // Helper methods
   const getPhotos = async () => {
@@ -59,7 +64,9 @@ export default function SelectPhotoScreen(props) {
   };
 
   const onCliclConfirm = () => {
-    // TODO: Save photos to redux state
+    const selectedPhotos = [];
+    selected.map((selectedIndex) => selectedPhotos.push(photos[selectedIndex]));
+    dispatch(savePhotos(selectedPhotos));
     props.navigation.goBack();
   }
 
