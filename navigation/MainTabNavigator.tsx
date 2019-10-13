@@ -13,6 +13,8 @@ import SellScreen from "../screens/SellScreen";
 import CarInfoScreen from "../screens/CarInfoScreen";
 import MyCollectionScreen from "../screens/MyCollectionScreen";
 import MyAccountScreen from "../screens/MyAccountScreen";
+import MyAccountNotLoggedInScreen from "../screens/MyAccountNotLoggedInScreen";
+import LoginScreen from "../screens/LoginScreen";
 
 const config: any = Platform.select({
   web: { headerMode: "screen" },
@@ -102,7 +104,7 @@ MyCollectionStack.path = "";
  */
 const MyAccountStack = createStackNavigator(
   {
-    MyAccount: MyAccountScreen
+    MyAccount: LoginScreen
   },
   config
 );
