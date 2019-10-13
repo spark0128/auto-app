@@ -15,8 +15,8 @@ import SelectPhotoScreen from "../screens/SelectPhotoScreen";
 import MyCollectionScreen from "../screens/MyCollectionScreen";
 import MyAccountScreen from "../screens/MyAccountScreen";
 import MyAccountNotLoggedInScreen from "../screens/MyAccountNotLoggedInScreen";
-import LoginScreen from "../screens/LoginScreen";
-import LoginFormScreen from "../screens/LoginFormScreen";
+import LoginModalScreen from "../screens/LoginModalScreen";
+import LoginFormScreen from "../screens/LoginScreen";
 import SignupScreen from "../screens/SignupScreen";
 import { FindPasswordScreen } from "../screens/FindPasswordScreen";
 
@@ -108,7 +108,7 @@ MyCollectionStack.path = "";
  */
 const MyAccountStack = createStackNavigator(
   {
-    MyAccount: FindPasswordScreen
+    MyAccount: LoginModalScreen
   },
   config
 );
