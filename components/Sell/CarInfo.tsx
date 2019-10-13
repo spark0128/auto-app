@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { useSelector } from "react-redux";
 import {
   View,
   ScrollView,
@@ -6,30 +7,52 @@ import {
   StyleSheet,
   Image,
   Dimensions,
-  CheckBox
+  CheckBox,
+  TouchableOpacity,
 } from "react-native";
+import Constants from 'expo-constants';
+import * as Permissions from 'expo-permissions';
 import { Select } from "../../common/Select";
 import { TextInputWithUnit } from "../../common/TextInputWithUnit";
+import Carousel from "./Carousel";
 
-export default function CarInfo() {
+export default function CarInfo(props) {
   // TODO: Text Validation
   // TODO: Screen move up when keyboard popup
 
-  const [checked, setChecked] = useState([]);
-
   const screenWidth = Math.round(Dimensions.get("window").width);
   const paddingHorizontal = 15;
+
+  // Redux
+  const photos = useSelector((state) => state.SellYourCarReducer.photos);
+
+  // States
+  const [checked, setChecked] = useState([]);
+
+  // Handlers
+  const onPhotoClick = async () => {
+    if (Constants.platform.ios) {
+      const { status } = await Permissions.askAsync(Permissions.CAMERA_ROLL);
+      if (status !== 'granted') {
+        alert('Sorry, we need camera roll permissions to make this work!');
+        return;
+      }
+    }
+    props.navigation.navigate('SelectPhoto');
+  };
 
   return (
     <ScrollView>
       <View style={styles.container}>
         <Text style={styles.title}>Car Information</Text>
-        <View style={styles.photoUploadContainer}>
-          <Text style={styles.photoTitle}>Car Photos Upload</Text>
-          <Text style={styles.photoSubTitle}>
-            Please upload in order (Min. 5 photos).
-          </Text>
-        </View>
+        {photos.length ? <Carousel photos={photos} /> :
+          <TouchableOpacity style={styles.photoUploadContainer} onPress={onPhotoClick}>
+            <Text style={styles.photoTitle}>Car Photos Upload</Text>
+            <Text style={styles.photoSubTitle}>
+              Please upload in order (Min. 5 photos).
+            </Text>
+          </TouchableOpacity>
+        }
         <Text style={styles.photoGuideText}>See Our Photo Guide</Text>
         <View style={styles.sectionContainer}>
           <Text style={styles.sectionTitle}>Basic Information</Text>
