@@ -16,6 +16,7 @@ import MyAccountScreen from "../screens/MyAccountScreen";
 import MyAccountNotLoggedInScreen from "../screens/MyAccountNotLoggedInScreen";
 import LoginScreen from "../screens/LoginScreen";
 import LoginFormScreen from "../screens/LoginFormScreen";
+import SignupScreen from "../screens/SignupScreen";
 
 const config: any = Platform.select({
   web: { headerMode: "screen" },
@@ -105,7 +106,7 @@ MyCollectionStack.path = "";
  */
 const MyAccountStack = createStackNavigator(
   {
-    MyAccount: LoginFormScreen
+    MyAccount: SignupScreen
   },
   config
 );

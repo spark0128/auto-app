@@ -12,11 +12,16 @@ export default function SignupScreen() {
         name="Phone Number(without “-“)"
         containerWidth={{ width: "100%" }}
       />
-      <TextInputBase name="Last Name" containerWidth={{ width: "100%" }} />
-      <View style={styles.loginSettingsContainer}>
+      <TextInputBase
+        name="VerificationNumber"
+        containerWidth={{ width: "100%" }}
+      />
+      <View style={styles.signupAgreementsContainer}>
         <View style={styles.checkBoxContainer}>
           <Image></Image>
-          <Text style={styles.checkBoxText}>Stay logged in</Text>
+          <Text style={styles.checkBoxText}>
+            I agree to Automate Service Agreement (Required)
+          </Text>
         </View>
         <Text style={styles.lostPasswordText}>Lost Password?</Text>
       </View>
