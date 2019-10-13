@@ -1,14 +1,14 @@
 import React from "react";
-import { View, StyleSheet, Image, Text } from "react-native";
+import { StyleSheet, Image, TouchableOpacity } from "react-native";
 
-export function Hero() {
+export function Hero(props) {
   return (
-    <View style={styles.container}>
+    <TouchableOpacity style={styles.container} onPress={props.onPress}>
       <Image
         style={styles.heroImage}
         source={{ uri: "https://i.imgur.com/kUQBAzZ.png" }}
       ></Image>
-    </View>
+    </TouchableOpacity>
   );
 }
 
