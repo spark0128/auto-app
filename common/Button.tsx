@@ -1,5 +1,5 @@
 import React from "react";
-import { Text, View, StyleSheet } from "react-native";
+import { Text, View, StyleSheet, TouchableOpacity } from "react-native";
 
 export function Button(props) {
   return (
@@ -13,9 +13,12 @@ export function Button(props) {
 
 export function PaddedButton(props) {
   return (
-    <View style={[styles.buttonContainer, props.buttonColor]}>
-      <Text style={styles.buttonText}>{props.children}</Text>
-    </View>
+    // TODO: 0 when not active , blue and 0.8 when active
+    <TouchableOpacity>
+      <View style={[styles.buttonContainer, props.style]}>
+        <Text style={styles.buttonText}>{props.children}</Text>
+      </View>
+    </TouchableOpacity>
   );
 }
 
@@ -24,7 +27,6 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     alignItems: "center",
     width: "100%",
-    paddingVertical: 24,
     borderRadius: 3
   },
   buttonText: {

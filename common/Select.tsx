@@ -13,8 +13,8 @@ export function Select(props) {
 const styles = StyleSheet.create({
   container: {
     height: 64,
-    borderColor: "#D3D3D3",
-    borderWidth: 1.5,
+    borderColor: "#CFCFCF",
+    borderWidth: 1,
     borderRadius: 3,
     justifyContent: "center",
     paddingLeft: 14,

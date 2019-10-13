@@ -1,13 +1,13 @@
 import React from "react";
 import { View, Text, Image, StyleSheet } from "react-native";
-import { TextInputBase } from "../common/TextInputBase";
+import { TextInputBasic } from "../common/TextInputCustom";
 import { PaddedButton } from "../common/Button";
 
 export default function LoginFormScreen() {
   return (
     <View style={styles.container}>
-      <TextInputBase name="Username" containerWidth={{ width: "100%" }} />
-      <TextInputBase name="Password" containerWidth={{ width: "100%" }} />
+      <TextInputBasic name="Username" containerWidth={{ width: "100%" }} />
+      <TextInputBasic name="Password" containerWidth={{ width: "100%" }} />
       <View style={styles.loginSettingsContainer}>
         <View style={styles.checkBoxContainer}>
           <Image></Image>

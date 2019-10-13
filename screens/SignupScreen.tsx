@@ -1,44 +1,53 @@
 import React from "react";
-import { View, Text, Image, StyleSheet } from "react-native";
-import { TextInputBase } from "../common/TextInputBase";
+import {
+  View,
+  Text,
+  Image,
+  StyleSheet,
+  Button,
+  ScrollView
+} from "react-native";
+import { TextInputBasic, TextInputWithButton } from "../common/TextInputCustom";
 import { PaddedButton } from "../common/Button";
+import { PasswordInputWithConfirm } from "../common/PasswordInput";
 
 export default function SignupScreen() {
   return (
-    <View style={styles.container}>
-      <TextInputBase name="First Name" containerWidth={{ width: "100%" }} />
-      <TextInputBase name="Last Name" containerWidth={{ width: "100%" }} />
-      <TextInputBase
-        name="Phone Number(without “-“)"
+    <ScrollView style={styles.container}>
+      <TextInputBasic name="First Name" containerWidth={{ width: "100%" }} />
+      <TextInputBasic name="Last Name" containerWidth={{ width: "100%" }} />
+      <TextInputWithButton
+        name="Phone Number"
         containerWidth={{ width: "100%" }}
+        buttonName="Verify"
       />
-      <TextInputBase
-        name="VerificationNumber"
+      <TextInputWithButton
+        name="Verification Number"
         containerWidth={{ width: "100%" }}
+        buttonName="Confirm"
       />
-      <View style={styles.signupAgreementsContainer}>
+      <PasswordInputWithConfirm />
+      <View style={styles.signupAgreementContainer}>
         <View style={styles.checkBoxContainer}>
           <Image></Image>
           <Text style={styles.checkBoxText}>
             I agree to Automate Service Agreement (Required)
           </Text>
         </View>
-        <Text style={styles.lostPasswordText}>Lost Password?</Text>
+        <View style={styles.checkBoxContainer}>
+          <Image></Image>
+          <Text style={styles.checkBoxText}>
+            I agree to Personal Privacy and Data Collection (Required)
+          </Text>
+        </View>
       </View>
-      <PaddedButton buttonColor={{ backgroundColor: "#D9D9D9" }}>
-        Login
+      <PaddedButton
+        style={styles.signupButton}
+        buttonColor={{ backgroundColor: "#D9D9D9" }}
+      >
+        Sign up
       </PaddedButton>
-      <View style={styles.infoContainer}>
-        <Image
-          style={styles.infoIcon}
-          source={{ uri: "https://i.imgur.com/LVVh7tQ.png" }}
-        ></Image>
-        <Text style={styles.infoText}>
-          Please contact 010-395-677 or support@automate-kh.com{"\n"}for any
-          login issues.
-        </Text>
-      </View>
-    </View>
+    </ScrollView>
   );
 }
 
@@ -48,34 +57,19 @@ const styles = StyleSheet.create({
     paddingTop: 21,
     paddingHorizontal: 15
   },
-  loginSettingsContainer: {
-    flexDirection: "row",
-    justifyContent: "space-between",
-    alignItems: "center",
-    marginTop: 8,
-    marginBottom: 15
+  signupAgreementContainer: {
+    marginTop: 20
   },
-  checkBoxContainer: {},
+  checkBoxContainer: {
+    marginBottom: 10
+  },
   checkBoxText: {
-    color: "#9A9A9A"
+    fontSize: 13,
+    color: "#8A8A8A"
   },
-  lostPasswordText: {
-    color: "#8B91A0",
-    textDecorationLine: "underline"
-  },
-  infoContainer: {
-    flexDirection: "row",
-    alignContent: "center",
-    marginTop: 15
-  },
-  infoIcon: {
-    width: 12,
-    height: 12,
-    resizeMode: "contain",
-    marginRight: 6
-  },
-  infoText: {
-    fontSize: 11,
-    color: "#838CA2"
+  signupButton: {
+    backgroundColor: "#8A8A8A",
+    paddingVertical: 19,
+    marginTop: 17
   }
 });

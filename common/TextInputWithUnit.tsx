@@ -17,8 +17,8 @@ export function TextInputWithUnit(props) {
 const styles = StyleSheet.create({
   container: {
     height: 64,
-    borderColor: "#D3D3D3",
-    borderWidth: 1.5,
+    borderColor: "#CFCFCF",
+    borderWidth: 1,
     borderRadius: 3,
     justifyContent: "space-between",
     alignItems: "center",
