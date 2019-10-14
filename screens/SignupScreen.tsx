@@ -8,7 +8,7 @@ import {
   ScrollView
 } from "react-native";
 import { TextInputBasic, TextInputWithButton } from "../common/TextInputCustom";
-import { PaddedButton } from "../common/Button";
+import { PrimaryButton } from "../common/Button";
 import { PasswordInputWithConfirm } from "../common/PasswordInput";
 
 export default function SignupScreen() {
@@ -41,12 +41,12 @@ export default function SignupScreen() {
           </Text>
         </View>
       </View>
-      <PaddedButton
+      <PrimaryButton
         style={styles.signupButton}
-        buttonColor={{ backgroundColor: "#D9D9D9" }}
+        backgroundColor={{ backgroundColor: "#D9D9D9" }}
       >
         Sign up
-      </PaddedButton>
+      </PrimaryButton>
     </ScrollView>
   );
 }
@@ -68,8 +68,6 @@ const styles = StyleSheet.create({
     color: "#8A8A8A"
   },
   signupButton: {
-    backgroundColor: "#8A8A8A",
-    paddingVertical: 19,
     marginTop: 17
   }
 });

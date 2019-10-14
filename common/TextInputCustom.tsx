@@ -37,6 +37,19 @@ export function TextInputWithButton(props) {
   );
 }
 
+export function TextInputWithUnit(props) {
+  return (
+    <View style={[styles.textInputWithUnitContainer, props.containerWidth]}>
+      <TextInput
+        placeholder={props.name}
+        placeholderTextColor="#9A9A9A"
+        style={styles.name}
+      />
+      <Text style={styles.unit}>{props.unit}</Text>
+    </View>
+  );
+}
+
 const styles = StyleSheet.create({
   container: {
     height: 64,
@@ -66,5 +79,20 @@ const styles = StyleSheet.create({
   buttonText: {
     fontSize: 12,
     color: "#9A9A9A"
+  },
+  textInputWithUnitContainer: {
+    height: 64,
+    borderColor: "#CFCFCF",
+    borderWidth: 1,
+    borderRadius: 3,
+    justifyContent: "space-between",
+    alignItems: "center",
+    paddingHorizontal: 14,
+    marginBottom: 7,
+    flexDirection: "row"
+  },
+  unit: {
+    color: "#000",
+    fontSize: 15
   }
 });

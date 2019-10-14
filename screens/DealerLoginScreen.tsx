@@ -3,7 +3,7 @@ import { View, Text, Image, StyleSheet } from "react-native";
 import { TextInputBasic } from "../common/TextInputCustom";
 import { SecondaryButton } from "../common/Button";
 
-export default function LoginScreen() {
+export default function DealerLoginScreen() {
   return (
     <View style={styles.container}>
       <TextInputBasic name="Username" containerWidth={{ width: "100%" }} />

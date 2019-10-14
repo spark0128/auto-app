@@ -1,83 +1,114 @@
-import React from 'react';
-import { ScrollView, StyleSheet } from 'react-native';
-
-import { Button, ListItem } from 'react-native-elements';
-import { ListHeader } from '../components/Search/ListHeader';
-
+import React from "react";
+import { ScrollView, StyleSheet } from "react-native";
+import { ListHeader } from "../components/Search/ListHeader";
+import { ListItemImageNumCars } from "../common/ListItem";
+import { Button } from "../common/Button";
 
 export default function SelectModelScreen(props) {
-
   // TODO: Get popular models in brand from server
   const popularModels = [
-    { id: '1', name: 'Vogue' },
-    { id: '2', name: 'Evoque' },
+    {
+      id: "1",
+      name: "Vogue",
+      imageUrl: "https://i.imgur.com/GbFjASW.png",
+      numCars: 72
+    },
+    {
+      id: "2",
+      name: "Evoque",
+      imageUrl: "https://i.imgur.com/GbFjASW.png",
+      numCars: 72
+    }
   ];
 
   // TODO: Get other models in brand from server
   const otherModels = [
-    { id: '1', name: 'LR2' },
-    { id: '2', name: 'LR4' },
+    {
+      id: "1",
+      name: "LR2",
+      imageUrl: "https://i.imgur.com/GbFjASW.png",
+      numCars: 72
+    },
+    {
+      id: "2",
+      name: "LR4",
+      imageUrl: "https://i.imgur.com/GbFjASW.png",
+      numCars: 72
+    }
   ];
 
   // Handlers
   const onModelClick = (model) => {
     return () => {
-      props.navigation.push('SelectModelDetail', {
+      props.navigation.push("SelectModelDetail", {
         modelId: model.id,
-        modelName: model.name,
+        modelName: model.name
       });
-    }
-  }
+    };
+  };
 
   const onSearchButtonClick = () => {
     // TODO: Pass search query option
-    props.navigation.push('SearchResult');
-  }
+    props.navigation.push("SearchResult");
+  };
 
   return (
     <>
       <ScrollView style={styles.container}>
-        <ListHeader title='Popular models' />
+        <ListHeader title="Popular Models" />
         {popularModels.map((model) => {
-          return <ListItem
-            key={model.id}
-            title={model.name}
-            bottomDivider
-            onPress={onModelClick(model)} />;
+          return (
+            <ListItemImageNumCars
+              key={model.id}
+              name={model.name}
+              imageUrl={model.imageUrl}
+              imageSize={{ width: 56, height: 38.5 }}
+              extraMargin={{ marginLeft: 7 }}
+              numCars={model.numCars}
+              onPress={onModelClick(model)}
+            />
+          );
         })}
-        <ListHeader title='Other models' />
+        <ListHeader title="Other Models" />
         {otherModels.map((model) => {
-          return <ListItem
-            key={model.id}
-            title={model.name}
-            bottomDivider
-            onPress={onModelClick(model)} />;
+          return (
+            <ListItemImageNumCars
+              key={model.id}
+              name={model.name}
+              imageUrl={model.imageUrl}
+              imageSize={{ width: 56, height: 38.5 }}
+              extraMargin={{ marginLeft: 7 }}
+              numCars={model.numCars}
+              onPress={onModelClick(model)}
+            />
+          );
         })}
       </ScrollView>
       <Button
-        style={styles.searchButton}
-        title="Search (42 Cars)"
-        onPress={onSearchButtonClick} />
+        backgroundColor={styles.searchButtonContainer}
+        buttonName="Search (72 Cars)"
+        onPress={onSearchButtonClick}
+      ></Button>
     </>
   );
 }
 
 SelectModelScreen.navigationOptions = ({ navigation }) => {
   return {
-    title: navigation.getParam('brandName', 'Brand Name'),
-  }
-}
+    title: navigation.getParam("brandName", "Brand Name")
+  };
+};
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#f5f5f5',
+    backgroundColor: "#f5f5f5"
   },
   listHeader: {
     flex: 1,
-    backgroundColor: '#f5f5f5',
+    backgroundColor: "#f5f5f5"
   },
-  searchButton: {
-    height: 46,
-  },
+  searchButtonContainer: {
+    backgroundColor: "#191919"
+  }
 });

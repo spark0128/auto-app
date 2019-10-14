@@ -1,7 +1,7 @@
 import React from "react";
 import { View, Text, StyleSheet } from "react-native";
 import { TextInputBasic } from "../common/TextInputCustom";
-import { PaddedButton } from "../common/Button";
+import { SecondaryButton } from "../common/Button";
 
 export function FindPasswordScreen() {
   return (
@@ -11,7 +11,12 @@ export function FindPasswordScreen() {
         password on SMS.
       </Text>
       <TextInputBasic name="Phone Number" containerWidth={{ width: "100%" }} />
-      <PaddedButton style={styles.button}>Request Password</PaddedButton>
+      <SecondaryButton
+        style={styles.button}
+        backgroundColor={{ backgroundColor: "#D9D9D9" }}
+      >
+        Request Password
+      </SecondaryButton>
     </View>
   );
 }
@@ -27,7 +32,6 @@ const styles = StyleSheet.create({
   },
   button: {
     backgroundColor: "#D9D9D9",
-    paddingVertical: 24,
     marginTop: 8
   }
 });
