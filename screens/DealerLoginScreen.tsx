@@ -1,13 +1,13 @@
 import React from "react";
 import { View, Text, Image, StyleSheet } from "react-native";
-import { TextInputBase } from "../common/TextInputBase";
-import { PaddedButton } from "../common/Button";
+import { TextInputBasic } from "../common/TextInputCustom";
+import { SecondaryButton } from "../common/Button";
 
-export default function LoginFormScreen() {
+export default function DealerLoginScreen() {
   return (
     <View style={styles.container}>
-      <TextInputBase name="Username" containerWidth={{ width: "100%" }} />
-      <TextInputBase name="Password" containerWidth={{ width: "100%" }} />
+      <TextInputBasic name="Username" containerWidth={{ width: "100%" }} />
+      <TextInputBasic name="Password" containerWidth={{ width: "100%" }} />
       <View style={styles.loginSettingsContainer}>
         <View style={styles.checkBoxContainer}>
           <Image></Image>
@@ -15,9 +15,9 @@ export default function LoginFormScreen() {
         </View>
         <Text style={styles.lostPasswordText}>Lost Password?</Text>
       </View>
-      <PaddedButton buttonColor={{ backgroundColor: "#D9D9D9" }}>
+      <SecondaryButton backgroundColor={{ backgroundColor: "#D9D9D9" }}>
         Login
-      </PaddedButton>
+      </SecondaryButton>
       <View style={styles.infoContainer}>
         <Image
           style={styles.infoIcon}

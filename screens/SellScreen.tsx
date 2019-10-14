@@ -5,7 +5,7 @@ import { Button } from "../common/Button";
 
 export default function SellScreen(props) {
   // Handlers
-  const onSellButtonClick = () => {
+  const onGoButtonClick = () => {
     props.navigation.push("CarInfo");
   };
 
@@ -15,11 +15,10 @@ export default function SellScreen(props) {
         <Text>Infography</Text>
       </ScrollView>
       <Button
-        containerStyle={styles.searchButtonContainer}
-        style={styles.searchButton}
-        onPress={onSellButtonClick}>
-        Let's Go
-      </Button>
+        backgroundColor={styles.goButtonContainer}
+        onPress={onGoButtonClick}
+        buttonName="Let's go"
+      />
     </>
   );
 }
@@ -34,14 +33,7 @@ const styles = StyleSheet.create({
     paddingTop: 15,
     backgroundColor: "#fff"
   },
-  searchButtonContainer: {
-    backgroundColor: "#2270E7",
-    justifyContent: "center",
-    alignItems: "center"
-  },
-  searchButton: {
-    color: "#fff",
-    fontSize: 16,
-    fontWeight: "500"
+  goButtonContainer: {
+    backgroundColor: "#2270E7"
   }
 });

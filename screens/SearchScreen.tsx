@@ -5,22 +5,64 @@ import {
   StyleSheet,
   Platform,
   TextInput,
-  Text
+  Text,
+  Image
 } from "react-native";
 
 import { Button } from "../common/Button";
-import { ListItem, Avatar } from "react-native-elements";
 import { ListHeader } from "../components/Search/ListHeader";
+import { ListItemImageNumCars } from "../common/ListItem";
 
 export default function SearchScreen(props) {
   // TODO: Get popular brands from server
   const popularBrands = [
-    { id: "1", name: "Toyota", avatar_url: "https://i.imgur.com/3PpGDOh.png" },
-    { id: "2", name: "Lexus", avatar_url: "https://i.imgur.com/jTxYza7.png" }
+    {
+      id: "1",
+      name: "Toyota",
+      imageUrl: "https://i.imgur.com/3PpGDOh.png",
+      numCars: 53
+    },
+    {
+      id: "2",
+      name: "Lexus",
+      imageUrl: "https://i.imgur.com/jTxYza7.png",
+      numCars: 101
+    },
+    {
+      id: "3",
+      name: "Land Rover",
+      imageUrl: "https://i.imgur.com/kpqKr19.png",
+      numCars: 88
+    },
+    {
+      id: "4",
+      name: "Ford",
+      imageUrl: "https://i.imgur.com/gpXFnj2.png",
+      numCars: 23
+    }
   ];
 
   // TODO: Get other brands from server
-  const otherBrands = [{ id: "1", name: "Toyota" }, { id: "2", name: "Lexus" }];
+  const otherBrands = [
+    {
+      id: "1",
+      name: "Hyundai",
+      imageUrl: "https://i.imgur.com/XOx596s.png",
+      numCars: 43
+    },
+    {
+      id: "2",
+      name: "Kia",
+      imageUrl: "https://i.imgur.com/P9449P7.png",
+      numCars: 20
+    },
+    {
+      id: "3",
+      name: "SsangYong",
+      imageUrl: "https://i.imgur.com/K4LJdqf.png",
+      numCars: 72
+    }
+  ];
 
   // States
   const [search, setSearch] = useState("");
@@ -42,48 +84,47 @@ export default function SearchScreen(props) {
 
   return (
     <>
-      <View style={styles.tabsContainer}>
+      <View style={styles.tabContainer}>
         <View style={styles.activeTabContainer}>
           <Text style={styles.activeTabItem}>Brand</Text>
         </View>
-        <View style={styles.tabContainer}>
+        <View style={styles.tabItemContainer}>
           <Text style={styles.tabItem}>By Size</Text>
         </View>
       </View>
-      <ScrollView style={styles.container}>
-        <ListHeader title="Popular brands" />
+      <ScrollView style={styles.listContainer}>
+        <ListHeader title="Popular Brands" />
         {popularBrands.map((brand) => {
           return (
-            <ListItem
+            <ListItemImageNumCars
               key={brand.id}
-              title={brand.name}
-              bottomDivider
+              name={brand.name}
+              imageUrl={brand.imageUrl}
+              imageSize={{ width: 56, height: 32 }}
+              numCars={brand.numCars}
               onPress={onBrandClick(brand)}
-              titleStyle={{ fontSize: 14.5, fontWeight: "500" }}
-              leftAvatar={{ source: { uri: brand.avatar_url } }}
             />
           );
         })}
-        <ListHeader title="Other brands" />
+        <ListHeader title="Other Brands" />
         {otherBrands.map((brand) => {
           return (
-            <ListItem
+            <ListItemImageNumCars
               key={brand.id}
-              title={brand.name}
-              bottomDivider
+              name={brand.name}
+              imageUrl={brand.imageUrl}
+              imageSize={{ width: 56, height: 32 }}
+              numCars={brand.numCars}
               onPress={onBrandClick(brand)}
-              titleStyle={{ fontSize: 14.5, fontWeight: "500" }}
             />
           );
         })}
       </ScrollView>
       <Button
-        containerStyle={styles.bgSearchButton}
-        style={styles.textSearchButton}
+        backgroundColor={styles.searchButtonContainer}
+        buttonName="Search (95,108 Cars)"
         onPress={onSearchButtonClick}
-      >
-        Search (95,108 Cars)
-      </Button>
+      ></Button>
     </>
   );
 }
@@ -94,7 +135,6 @@ SearchScreen.navigationOptions = {
       style={{
         height: Platform.OS === "ios" ? 94 : 72,
         backgroundColor: "#1450F8",
-        // position: "relative",
         justifyContent: "flex-end",
         paddingHorizontal: 12
       }}
@@ -115,7 +155,7 @@ SearchScreen.navigationOptions = {
 };
 
 const styles = StyleSheet.create({
-  tabsContainer: {
+  tabContainer: {
     flexDirection: "row",
     alignItems: "center",
     height: 44,
@@ -133,7 +173,7 @@ const styles = StyleSheet.create({
     fontSize: 13,
     paddingHorizontal: 3
   },
-  tabContainer: {
+  tabItemContainer: {
     height: 44,
     justifyContent: "center"
   },
@@ -142,7 +182,7 @@ const styles = StyleSheet.create({
     fontSize: 13,
     paddingHorizontal: 3
   },
-  container: {
+  listContainer: {
     flex: 1,
     backgroundColor: "#f5f5f5"
   },
@@ -150,14 +190,7 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: "#f5f5f5"
   },
-  bgSearchButton: {
-    backgroundColor: "#191919",
-    justifyContent: "center",
-    alignItems: "center"
-  },
-  textSearchButton: {
-    color: "#fff",
-    fontSize: 16,
-    fontWeight: "500"
+  searchButtonContainer: {
+    backgroundColor: "#191919"
   }
 });
