@@ -22,3 +22,10 @@ export const signup = ({ firstName, lastName, username, phoneNumber, password })
     password,
   });
 };
+
+export const signin = (username: string, password: string) => {
+  return axios.post(`${BASE_URL}/signin`, {
+    username,
+    password,
+  });
+};

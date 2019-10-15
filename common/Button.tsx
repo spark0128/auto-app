@@ -23,9 +23,9 @@ export function PrimaryButton(props) {
 
 export function SecondaryButton(props) {
   return (
-    <TouchableOpacity>
+    <TouchableOpacity onPress={props.onPress}>
       <View style={[styles.secondaryButtonContainer, props.backgroundColor]}>
-        <Text style={styles.secondaryButtonText}>{props.children}</Text>
+        {props.loading ? <ActivityIndicator size="small" /> : <Text style={styles.secondaryButtonText}>{props.children}</Text>}
       </View>
     </TouchableOpacity>
   );

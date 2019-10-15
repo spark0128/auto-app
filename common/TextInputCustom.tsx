@@ -18,6 +18,7 @@ export function TextInputBasic(props) {
         style={styles.name}
         onChangeText={props.onChangeText}
         value={props.value}
+        secureTextEntry={props.secureTextEntry}
       />
     </View>
   );
