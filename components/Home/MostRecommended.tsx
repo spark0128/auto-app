@@ -1,26 +1,28 @@
 import React from "react";
-import { View, StyleSheet, Text, Image } from "react-native";
+import { View, StyleSheet, Text, Image, TouchableWithoutFeedback } from "react-native";
 
-export function MostRecommended() {
+export function MostRecommended({ car, onPress }) {
   return (
-    <View style={styles.container}>
-      <View style={styles.imageContainer}>
-        <Image
-          style={styles.carImage}
-          source={{
-            uri: "https://i.imgur.com/1gsClCq.jpg"
-          }}
-        />
-      </View>
-      <View style={styles.textContainer}>
-        <View style={styles.subTitleContainer}>
-          <Text style={styles.subTitle}>Most Recommended</Text>
+    <TouchableWithoutFeedback onPress={onPress}>
+      <View style={styles.container} >
+        <View style={styles.imageContainer}>
+          <Image
+            style={styles.carImage}
+            source={{
+              uri: car.image,
+            }}
+          />
         </View>
-        <View>
-          <Text style={styles.title}>{"2019 Lexus LX570".toUpperCase()}</Text>
+        <View style={styles.textContainer}>
+          <View style={styles.subTitleContainer}>
+            <Text style={styles.subTitle}>Most Recommended</Text>
+          </View>
+          <View>
+            <Text style={styles.title}>{"2019 Lexus LX570".toUpperCase()}</Text>
+          </View>
         </View>
       </View>
-    </View>
+    </TouchableWithoutFeedback>
   );
 }
 

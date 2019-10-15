@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import {
   View,
   ScrollView,
@@ -6,66 +6,50 @@ import {
   Platform,
   TextInput,
   Text,
-  Image
 } from "react-native";
 
 import { Button } from "../common/Button";
 import { ListHeader } from "../components/Search/ListHeader";
 import { ListItemImageNumCars } from "../common/ListItem";
+import { FullScreenSpinner } from "../common/FullScreenSpinner";
+import { getBrands } from "../apis/BrandAPI";
+import { searchCarsCount } from "../apis/CarAPI";
 
 export default function SearchScreen(props) {
-  // TODO: Get popular brands from server
-  const popularBrands = [
-    {
-      id: "1",
-      name: "Toyota",
-      imageUrl: "https://i.imgur.com/3PpGDOh.png",
-      numCars: 53
-    },
-    {
-      id: "2",
-      name: "Lexus",
-      imageUrl: "https://i.imgur.com/jTxYza7.png",
-      numCars: 101
-    },
-    {
-      id: "3",
-      name: "Land Rover",
-      imageUrl: "https://i.imgur.com/kpqKr19.png",
-      numCars: 88
-    },
-    {
-      id: "4",
-      name: "Ford",
-      imageUrl: "https://i.imgur.com/gpXFnj2.png",
-      numCars: 23
-    }
-  ];
-
-  // TODO: Get other brands from server
-  const otherBrands = [
-    {
-      id: "1",
-      name: "Hyundai",
-      imageUrl: "https://i.imgur.com/XOx596s.png",
-      numCars: 43
-    },
-    {
-      id: "2",
-      name: "Kia",
-      imageUrl: "https://i.imgur.com/P9449P7.png",
-      numCars: 20
-    },
-    {
-      id: "3",
-      name: "SsangYong",
-      imageUrl: "https://i.imgur.com/K4LJdqf.png",
-      numCars: 72
-    }
-  ];
-
   // States
-  const [search, setSearch] = useState("");
+  const [isInitialized, setIsInitialized] = useState(false);
+  const [popularBrands, setPopularBrands] = useState([]);
+  const [otherBrands, setOtherBrands] = useState([]);
+  const [searchCount, setSearchCount] = useState(null);
+
+  // Lifecycle methods
+  useEffect(() => {
+    // Get brands
+    (async () => {
+      try {
+        setIsInitialized(false);
+        const res = await getBrands();
+        setPopularBrands(res.data.popularBrands);
+        setOtherBrands(res.data.otherBrands);
+      } catch (error) {
+        // TODO: Enhnace error handling
+        console.error(error);
+      } finally {
+        setIsInitialized(true);
+      }
+    })();
+
+    // Get search count
+    (async () => {
+      try {
+        const res = await searchCarsCount();
+        setSearchCount(res.data.count);
+      } catch (error) {
+        // TODO: Enhnace error handling
+        console.error(error);
+      }
+    })();
+  }, []);
 
   // Handlers
   const onBrandClick = (brand) => {
@@ -78,7 +62,6 @@ export default function SearchScreen(props) {
   };
 
   const onSearchButtonClick = () => {
-    // TODO: Pass search query option
     props.navigation.push("SearchResult");
   };
 
@@ -93,36 +76,42 @@ export default function SearchScreen(props) {
         </View>
       </View>
       <ScrollView style={styles.listContainer}>
-        <ListHeader title="Popular Brands" />
-        {popularBrands.map((brand) => {
-          return (
-            <ListItemImageNumCars
-              key={brand.id}
-              name={brand.name}
-              imageUrl={brand.imageUrl}
-              imageSize={{ width: 56, height: 32 }}
-              numCars={brand.numCars}
-              onPress={onBrandClick(brand)}
-            />
-          );
-        })}
-        <ListHeader title="Other Brands" />
-        {otherBrands.map((brand) => {
-          return (
-            <ListItemImageNumCars
-              key={brand.id}
-              name={brand.name}
-              imageUrl={brand.imageUrl}
-              imageSize={{ width: 56, height: 32 }}
-              numCars={brand.numCars}
-              onPress={onBrandClick(brand)}
-            />
-          );
-        })}
+        {isInitialized ? <>
+          {popularBrands.length ? <>
+            <ListHeader title="Popular Brands" />
+            {popularBrands.map((brand) => {
+              return (
+                <ListItemImageNumCars
+                  key={brand.id}
+                  name={brand.name}
+                  imageUrl={brand.image}
+                  imageSize={{ width: 56, height: 32 }}
+                  numCars={brand.numCars}
+                  onPress={onBrandClick(brand)}
+                />
+              );
+            })}
+          </> : null}
+          {otherBrands.length ? <>
+            <ListHeader title="Other Brands" />
+            {otherBrands.map((brand) => {
+              return (
+                <ListItemImageNumCars
+                  key={brand.id}
+                  name={brand.name}
+                  imageUrl={brand.image}
+                  imageSize={{ width: 56, height: 32 }}
+                  numCars={brand.numCars}
+                  onPress={onBrandClick(brand)}
+                />
+              );
+            })}
+          </> : null}
+        </> : <FullScreenSpinner />}
       </ScrollView>
       <Button
         backgroundColor={styles.searchButtonContainer}
-        buttonName="Search (95,108 Cars)"
+        buttonName={searchCount === null ? "Search" : `Search (${searchCount} Cars)`}
         onPress={onSearchButtonClick}
       ></Button>
     </>

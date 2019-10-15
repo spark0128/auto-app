@@ -7,15 +7,22 @@ import {
   StyleSheet,
   TouchableOpacity
 } from "react-native";
+import HeaderIcon from "../components/HeaderIcon";
 import { ContactSupport } from "../common/ContactSupport";
 
-export default function LoginModalScreen() {
+export default function LoginModalScreen(props) {
+
+  // Handlers
+  const onSignInClick = () => {
+    props.navigation.push('Login');
+  };
+
+  const onSignUpClick = () => {
+    props.navigation.push('Signup');
+  };
+
   return (
     <ScrollView style={styles.container}>
-      <Image
-        style={styles.exitButton}
-        source={{ uri: "https://i.imgur.com/uY0LPff.png" }}
-      ></Image>
       <Text style={styles.headingText}>
         <Text>Login to Automate{"\n"}</Text>
         <Text style={styles.headingTextBold}>
@@ -30,14 +37,14 @@ export default function LoginModalScreen() {
         <Image source={{}}></Image>
         <Text style={styles.socialButtonText}>Login with WeChat</Text>
       </View>
-      <View style={styles.loginButton}>
+      <TouchableOpacity style={styles.loginButton} onPress={onSignInClick}>
         <Image source={{}}></Image>
         <Text style={styles.socialButtonText}>Login with Username</Text>
-      </View>
-      <View style={styles.signupButton}>
+      </TouchableOpacity>
+      <TouchableOpacity style={styles.signupButton} onPress={onSignUpClick}>
         <Image source={{}}></Image>
         <Text style={styles.buttonText}>Sign up for account</Text>
-      </View>
+      </TouchableOpacity>
       <View style={styles.loginDealerButton}>
         <Image source={{}}></Image>
         <Text style={styles.loginDealerButtonText}>Login as Dealer</Text>
@@ -47,6 +54,17 @@ export default function LoginModalScreen() {
     </ScrollView>
   );
 }
+
+LoginModalScreen.navigationOptions = ({ navigation }) => {
+  return {
+    title: "Sign In",
+    headerLeft: <>
+      <TouchableOpacity onPress={() => { navigation.dismiss() }}>
+        <HeaderIcon name="md-close" />
+      </TouchableOpacity>
+    </>,
+  };
+};
 
 const styles = StyleSheet.create({
   container: {
@@ -63,7 +81,8 @@ const styles = StyleSheet.create({
   headingText: {
     fontSize: 24,
     lineHeight: 29,
-    marginBottom: 56
+    marginBottom: 56,
+    marginTop: 44,
   },
   headingTextBold: {
     fontWeight: "600"

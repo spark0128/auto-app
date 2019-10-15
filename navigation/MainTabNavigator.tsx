@@ -1,17 +1,18 @@
 import React from "react";
-import { Platform } from "react-native";
+import { Platform, TouchableOpacity } from "react-native";
 import { createStackNavigator } from "react-navigation-stack";
 import { createBottomTabNavigator } from "react-navigation-tabs";
 
 import TabBarIcon from "../components/TabBarIcon";
+import HeaderIcon from "../components/HeaderIcon";
 import HomeScreen from "../screens/HomeScreen";
 import SearchScreen from "../screens/SearchScreen";
 import SearchModelScreen from "../screens/SearchModelScreen";
-import SearchModelDetailScreen from "../screens/SearchModelDetailScreen";
 import SearchResultScreen from "../screens/SearchResultScreen";
 import SellScreen from "../screens/SellScreen";
 import SellSelectBrandScreen from "../screens/SellSelectBrandScreen";
 import CarInfoScreen from "../screens/CarInfoScreen";
+import CarDetailScreen from "../screens/CarDetailScreen";
 import SelectPhotoScreen from "../screens/SelectPhotoScreen";
 import MyCollectionScreen from "../screens/MyCollectionScreen";
 import MyAccountScreen from "../screens/MyAccountScreen";
@@ -32,7 +33,8 @@ const config: any = Platform.select({
  */
 const HomeStack = createStackNavigator(
   {
-    Home: HomeScreen
+    Home: HomeScreen,
+    CarDetail: CarDetailScreen,
   },
   config
 );
@@ -51,8 +53,8 @@ const SearchStack = createStackNavigator(
   {
     Search: SearchScreen,
     SearchModel: SearchModelScreen,
-    SearchModelDetail: SearchModelDetailScreen,
-    SearchResult: SearchResultScreen
+    SearchResult: SearchResultScreen,
+    CarDetail: CarDetailScreen,
   },
   config
 );
@@ -112,7 +114,7 @@ MyCollectionStack.path = "";
  */
 const MyAccountStack = createStackNavigator(
   {
-    MyAccount: SignupScreen
+    MyAccount: MyAccountScreen,
   },
   config
 );
@@ -138,6 +140,18 @@ const TabNavigator = createBottomTabNavigator({
 });
 
 /**
+ * Login, Signup
+ */
+const LoginModalStack = createStackNavigator(
+  {
+    LoginModal: LoginModalScreen,
+    Login: LoginScreen,
+    Signup: SignupScreen,
+  },
+  config
+);
+
+/**
  * Main
  */
 const MainStack = createStackNavigator(
@@ -148,7 +162,11 @@ const MainStack = createStackNavigator(
     },
     SelectPhoto: {
       screen: SelectPhotoScreen
-    }
+    },
+    LoginModal: {
+      screen: LoginModalStack,
+      navigationOptions: { header: null }
+    },
   },
   {
     mode: "modal"

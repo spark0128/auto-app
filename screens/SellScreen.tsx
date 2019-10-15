@@ -2,11 +2,16 @@ import React from "react";
 import { Text } from "react-native";
 import { ScrollView, StyleSheet } from "react-native";
 import { Button } from "../common/Button";
+import AuthTokenService from "../services/AuthTokenService";
 
 export default function SellScreen(props) {
   // Handlers
-  const onGoButtonClick = () => {
-    props.navigation.push("CarInfo");
+  const onGoButtonClick = async () => {
+    if (await AuthTokenService.isLoggedIn()) {
+      props.navigation.push("CarInfo");
+    } else {
+      props.navigation.navigate('LoginModal');
+    }
   };
 
   return (

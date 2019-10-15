@@ -9,6 +9,9 @@ export function PasswordInputWithConfirm(props) {
           placeholder="Password"
           placeholderTextColor="#9A9A9A"
           style={styles.passwordInput}
+          onChangeText={props.onChangePassword}
+          value={props.password}
+          secureTextEntry={true}
         />
       </View>
       <View style={styles.passwordConfirmContainer}>
@@ -16,6 +19,9 @@ export function PasswordInputWithConfirm(props) {
           placeholder="Confirm Password"
           placeholderTextColor="#9A9A9A"
           style={styles.passwordInput}
+          onChangeText={props.onChangePasswordConfirmation}
+          value={props.passwordConfirmation}
+          secureTextEntry={true}
         />
       </View>
     </>

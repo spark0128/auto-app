@@ -1,5 +1,5 @@
 import React from "react";
-import { Text, View, StyleSheet, TouchableOpacity } from "react-native";
+import { Text, View, StyleSheet, TouchableOpacity, ActivityIndicator } from "react-native";
 
 export function Button(props) {
   return (
@@ -13,9 +13,9 @@ export function Button(props) {
 
 export function PrimaryButton(props) {
   return (
-    <TouchableOpacity>
+    <TouchableOpacity onPress={props.onPress}>
       <View style={[styles.primaryButtonContainer, props.backgroundColor]}>
-        <Text style={styles.primaryButtonText}>{props.children}</Text>
+        {props.loading ? <ActivityIndicator size="small" /> : <Text style={styles.primaryButtonText}>{props.children}</Text>}
       </View>
     </TouchableOpacity>
   );
@@ -23,9 +23,9 @@ export function PrimaryButton(props) {
 
 export function SecondaryButton(props) {
   return (
-    <TouchableOpacity>
+    <TouchableOpacity onPress={props.onPress}>
       <View style={[styles.secondaryButtonContainer, props.backgroundColor]}>
-        <Text style={styles.secondaryButtonText}>{props.children}</Text>
+        {props.loading ? <ActivityIndicator size="small" /> : <Text style={styles.secondaryButtonText}>{props.children}</Text>}
       </View>
     </TouchableOpacity>
   );

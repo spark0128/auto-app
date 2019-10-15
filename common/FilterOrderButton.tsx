@@ -1,24 +1,28 @@
 import React from "react";
-import { View, Image, Text, StyleSheet } from "react-native";
+import { View, Image, Text, StyleSheet, TouchableWithoutFeedback } from "react-native";
 
-const FilterOrderButton = () => {
+const FilterOrderButton = ({ onPress }) => {
   return (
     <View style={styles.buttonContainer}>
-      <View style={styles.filterContainer}>
-        <Image
-          style={styles.filterImage}
-          source={{ uri: "https://i.imgur.com/1Q68f2T.png" }}
-        />
-        <Text style={styles.filterText}>Filter</Text>
-      </View>
+      <TouchableWithoutFeedback onPress={() => onPress(0)} >
+        <View style={styles.filterContainer}>
+          <Image
+            style={styles.filterImage}
+            source={{ uri: "https://i.imgur.com/1Q68f2T.png" }}
+          />
+          <Text style={styles.filterText}>Filter</Text>
+        </View>
+      </TouchableWithoutFeedback>
       <View style={styles.divider}></View>
-      <View style={styles.orderContainer}>
-        <Image
-          style={styles.orderImage}
-          source={{ uri: "https://i.imgur.com/Yv2j8iT.png" }}
-        />
-        <Text style={styles.orderText}>Order</Text>
-      </View>
+      <TouchableWithoutFeedback onPress={() => onPress(1)}>
+        <View style={styles.orderContainer}>
+          <Image
+            style={styles.orderImage}
+            source={{ uri: "https://i.imgur.com/Yv2j8iT.png" }}
+          />
+          <Text style={styles.orderText}>Order</Text>
+        </View>
+      </TouchableWithoutFeedback>
     </View>
   );
 };
