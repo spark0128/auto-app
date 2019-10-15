@@ -51,6 +51,37 @@ export function ListItemSelectBrand(props) {
   );
 }
 
+export function ListItemModal(props) {
+  return (
+    <TouchableWithoutFeedback {...props}>
+      <View style={styles.listItemModal}>
+        <Text style={[props.extraMargin, styles.listItemName]}>
+          {props.name}
+        </Text>
+      </View>
+    </TouchableWithoutFeedback>
+  );
+}
+
+export function ListItemColor(props) {
+  return (
+    <TouchableWithoutFeedback {...props}>
+      <View
+        style={[
+          props.backgroundColor,
+          props.border,
+          styles.listItemColor,
+          props.position
+        ]}
+      >
+        <Text style={[props.textColor, styles.listItemColorName]}>
+          {props.name}
+        </Text>
+      </View>
+    </TouchableWithoutFeedback>
+  );
+}
+
 const styles = StyleSheet.create({
   listItem: {
     width: "100%",
@@ -77,7 +108,7 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     alignItems: "center",
     marginHorizontal: 9,
-    marginBottom: 40
+    marginVertical: 20
   },
   listItemSelectBrandLogo: {
     width: 66,
@@ -86,6 +117,29 @@ const styles = StyleSheet.create({
   },
   listItemSelectBrandName: {
     color: "#A7A8B6",
+    fontSize: 13
+  },
+  listItemModal: {
+    width: "100%",
+    flexDirection: "row",
+    backgroundColor: "#fff",
+    paddingLeft: 18,
+    paddingRight: 27,
+    height: 55,
+    alignItems: "center",
+    borderBottomColor: "#D8D8DA",
+    borderBottomWidth: 1
+  },
+  listItemColor: {
+    width: 50,
+    height: 50,
+    justifyContent: "center",
+    alignItems: "center",
+    borderRadius: 25,
+    marginHorizontal: 7,
+    marginBottom: 5
+  },
+  listItemColorName: {
     fontSize: 13
   }
 });

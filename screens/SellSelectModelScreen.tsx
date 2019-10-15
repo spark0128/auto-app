@@ -1,46 +1,57 @@
 import React from "react";
-import { ScrollView, StyleSheet } from "react-native";
-
-import { Button, ListItem } from "react-native-elements";
-import { ListHeader } from "../components/Search/ListHeader";
-import { ListItemImageNumCars } from "../common/ListItem";
+import { View, Text, ScrollView, StyleSheet } from "react-native";
+import { ListItemBasic } from "../common/ListItem";
+import { TextInputWithButton } from "../common/TextInputCustom";
+import { ContactSupport } from "../common/ContactSupport";
+import { useDispatch } from "react-redux";
+import { saveModel } from "../redux/actions/SellYourCarActions";
 
 export default function SellSelectModelScreen(props) {
-  // TODO: Get modelDetails in model from server
-  const modelDetails = [{ id: "1", name: "1.8" }, { id: "2", name: "1.8 L" }];
+  const dispatch = useDispatch();
 
+  const models = [
+    { id: "1", name: "Prius" },
+    { id: "2", name: "Prius C" },
+    { id: "3", name: "Prius Prime" },
+    { id: "4", name: "CR-V" },
+    { id: "5", name: "Highlander" },
+    { id: "6", name: "Camry" },
+    { id: "7", name: "Camry Hybrid" },
+    { id: "8", name: "Corolla" }
+  ];
   // Handlers
-  const onModelDetailClick = (modelDetail) => {
+  const onModelClick = (model) => {
     return () => {
-      // TODO: Pass search query option
-      props.navigation.push("SearchResult");
+      dispatch(saveModel(model.name));
+      props.navigation.navigate("CarInfo");
     };
-  };
-
-  const onSearchButtonClick = () => {
-    // TODO: Pass search query option
-    props.navigation.push("SearchResult");
   };
 
   return (
     <>
       <ScrollView style={styles.container}>
-        <ListHeader title="Model Details" />
-        {modelDetails.map((modelDetail) => {
+        {models.map((model) => {
           return (
-            <ListItemImageNumCars
-              key={modelDetail.id}
-              name={modelDetail.name}
-              onPress={onModelDetailClick(modelDetail)}
+            <ListItemBasic
+              key={model.id}
+              name={model.name}
+              onPress={onModelClick(model)}
             />
           );
         })}
+        {/* <View style={{ backgroundColor: "#F2F2F2", height: 10 }} /> */}
+        <View style={styles.cannotFindModelContainer}>
+          <Text style={styles.cannotFindModelTitle}>
+            Cannot find your model?
+          </Text>
+          <TextInputWithButton
+            containerWidth={{ width: "100%" }}
+            name="Type your model here"
+            buttonName="Next"
+          />
+        </View>
+        <ContactSupport />
       </ScrollView>
-      <Button
-        style={styles.searchButton}
-        title="Search (10 Cars)"
-        onPress={onSearchButtonClick}
-      />
     </>
   );
 }
@@ -56,11 +67,13 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: "#f5f5f5"
   },
-  listHeader: {
-    flex: 1,
-    backgroundColor: "#f5f5f5"
+  cannotFindModelContainer: {
+    marginTop: 24,
+    paddingHorizontal: 16
   },
-  searchButton: {
-    height: 46
+  cannotFindModelTitle: {
+    fontSize: 15,
+    fontWeight: "500",
+    marginBottom: 20
   }
 });

@@ -2,6 +2,7 @@ import React from "react";
 import { View, Text, Image, StyleSheet } from "react-native";
 import { TextInputBasic } from "../common/TextInputCustom";
 import { SecondaryButton } from "../common/Button";
+import { ContactSupport } from "../common/ContactSupport";
 
 export default function DealerLoginScreen() {
   return (
@@ -18,16 +19,7 @@ export default function DealerLoginScreen() {
       <SecondaryButton backgroundColor={{ backgroundColor: "#D9D9D9" }}>
         Login
       </SecondaryButton>
-      <View style={styles.infoContainer}>
-        <Image
-          style={styles.infoIcon}
-          source={{ uri: "https://i.imgur.com/LVVh7tQ.png" }}
-        ></Image>
-        <Text style={styles.infoText}>
-          Please contact 010-395-677 or support@automate-kh.com{"\n"}for any
-          login issues.
-        </Text>
-      </View>
+      <ContactSupport />
     </View>
   );
 }
@@ -52,20 +44,5 @@ const styles = StyleSheet.create({
   lostPasswordText: {
     color: "#8B91A0",
     textDecorationLine: "underline"
-  },
-  infoContainer: {
-    flexDirection: "row",
-    alignContent: "center",
-    marginTop: 15
-  },
-  infoIcon: {
-    width: 12,
-    height: 12,
-    resizeMode: "contain",
-    marginRight: 6
-  },
-  infoText: {
-    fontSize: 11,
-    color: "#838CA2"
   }
 });

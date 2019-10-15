@@ -8,6 +8,7 @@ import {
   TouchableOpacity
 } from "react-native";
 import HeaderIcon from "../components/HeaderIcon";
+import { ContactSupport } from "../common/ContactSupport";
 
 export default function LoginModalScreen(props) {
 
@@ -49,16 +50,7 @@ export default function LoginModalScreen(props) {
         <Text style={styles.loginDealerButtonText}>Login as Dealer</Text>
       </View>
       <Text style={styles.signupDealer}>Sign up for Dealer</Text>
-      <View style={styles.infoContainer}>
-        <Image
-          style={styles.infoIcon}
-          source={{ uri: "https://i.imgur.com/LVVh7tQ.png" }}
-        ></Image>
-        <Text style={styles.infoText}>
-          Please contact 010-395-677 or support@automate-kh.com for any login
-          issues.
-        </Text>
-      </View>
+      <ContactSupport />
     </ScrollView>
   );
 }
@@ -160,20 +152,5 @@ const styles = StyleSheet.create({
     color: "#8E8E8E",
     marginBottom: 36,
     alignSelf: "center"
-  },
-  infoContainer: {
-    flexDirection: "row",
-    alignSelf: "center"
-  },
-  infoIcon: {
-    width: 12,
-    height: 12,
-    resizeMode: "contain",
-    marginRight: 6
-  },
-  infoText: {
-    fontSize: 11,
-    color: "#838CA2",
-    fontWeight: "500"
   }
 });
