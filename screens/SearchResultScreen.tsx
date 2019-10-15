@@ -46,11 +46,19 @@ export default function SearchResultScreen(props) {
     }
   };
 
+  const onPressCar = (car) => {
+    return () => {
+      props.navigation.push('CarDetail', {
+        carId: car._id,
+      });
+    }
+  }
+
   return (
     <>
       <ScrollView style={styles.container}>
         {cars.map((car) => {
-          return <FeaturedCarCard key={car._id} car={car} />;
+          return <FeaturedCarCard key={car._id} car={car} onPress={onPressCar(car)} />;
         })}
       </ScrollView>
       <FilterOrderButton />

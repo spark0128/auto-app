@@ -17,3 +17,7 @@ export const searchCarsCount = async (brandId = null, modelId = null) => {
   const query = generateSearchQuery(brandId, modelId);
   return axios.post(`${BASE_URL}/cars/search/count`, query);
 };
+
+export const getCar = async (carId) => {
+  return axios.get(`${BASE_URL}/cars/${carId}`);
+};

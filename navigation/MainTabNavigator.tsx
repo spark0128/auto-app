@@ -12,6 +12,7 @@ import SearchResultScreen from "../screens/SearchResultScreen";
 import SellScreen from "../screens/SellScreen";
 import SellSelectBrandScreen from "../screens/SellSelectBrandScreen";
 import CarInfoScreen from "../screens/CarInfoScreen";
+import CarDetailScreen from "../screens/CarDetailScreen";
 import SelectPhotoScreen from "../screens/SelectPhotoScreen";
 import MyCollectionScreen from "../screens/MyCollectionScreen";
 import MyAccountScreen from "../screens/MyAccountScreen";
@@ -31,7 +32,8 @@ const config: any = Platform.select({
  */
 const HomeStack = createStackNavigator(
   {
-    Home: HomeScreen
+    Home: HomeScreen,
+    CarDetail: CarDetailScreen,
   },
   config
 );
@@ -50,7 +52,8 @@ const SearchStack = createStackNavigator(
   {
     Search: SearchScreen,
     SearchModel: SearchModelScreen,
-    SearchResult: SearchResultScreen
+    SearchResult: SearchResultScreen,
+    CarDetail: CarDetailScreen,
   },
   config
 );

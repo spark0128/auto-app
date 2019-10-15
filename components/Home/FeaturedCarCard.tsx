@@ -5,9 +5,9 @@ import {
   TouchableWithoutFeedback
 } from "react-native-gesture-handler";
 
-export function FeaturedCarCard({ car }) {
+export function FeaturedCarCard({ car, onPress }) {
   return (
-    <View style={styles.container}>
+    <TouchableWithoutFeedback style={styles.container} onPress={onPress}>
       <View style={styles.imageContainer}>
         <Image
           style={styles.cardImage}
@@ -60,7 +60,7 @@ export function FeaturedCarCard({ car }) {
           borderTopWidth: 1
         }}
       />
-    </View>
+    </TouchableWithoutFeedback>
   );
 }
 

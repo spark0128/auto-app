@@ -29,12 +29,25 @@ export default function HomeScreen(props) {
   }, []);
 
   // TODO: Get most recommended cars from server
+  const mostRecommendedCar = {
+    _id: "1",
+    name: "LEXUS LX300",
+    image: "https://i.imgur.com/1gsClCq.jpg",
+    price: 11500,
+    mileage: 43000,
+    year: "2015",
+    city: "Phnom Penh",
+    postedAt: "5 days ago",
+    numViews: 25
+  };
+
   // TODO: Get most viewed cars from server
   // TODO: Get featured cars from server
   const featuredCars = [
     {
       id: "1",
       name: "LEXUS LX300",
+      image: "https://i.imgur.com/1gsClCq.jpg",
       price: 11500,
       mileage: 43000,
       year: "2015",
@@ -45,6 +58,7 @@ export default function HomeScreen(props) {
     {
       id: "2",
       name: "TOYOTA Camry",
+      image: "https://i.imgur.com/1gsClCq.jpg",
       price: 33500,
       mileage: 80000,
       year: "2012",
@@ -54,15 +68,24 @@ export default function HomeScreen(props) {
     }
   ];
 
+  // Handers
+  const onPressCar = (car) => {
+    return () => {
+      props.navigation.navigate('CarDetail', {
+        carId: car.id,
+      });
+    };
+  }
+
   return (
     <View style={styles.container}>
       <ScrollView style={styles.container}>
         <Hero onPress={() => {}} />
-        <MostRecommended />
+        <MostRecommended car={mostRecommendedCar} onPress={onPressCar(mostRecommendedCar)} />
         <View style={{ backgroundColor: "#F2F2F2", height: 10 }} />
         <MostViewed />
         {featuredCars.map((car) => (
-          <FeaturedCarCard key={car.id} car={car} />
+          <FeaturedCarCard key={car.id} car={car} onPress={onPressCar(car)} />
         ))}
       </ScrollView>
     </View>
