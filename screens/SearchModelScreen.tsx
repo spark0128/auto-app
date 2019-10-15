@@ -1,41 +1,34 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { ScrollView, StyleSheet } from "react-native";
 import { ListHeader } from "../components/Search/ListHeader";
 import { ListItemImageNumCars } from "../common/ListItem";
 import { Button } from "../common/Button";
+import { getModels } from "../apis/BrandAPI";
+import { FullScreenSpinner } from "../common/FullScreenSpinner";
 
 export default function SearchModelScreen(props) {
-  // TODO: Get popular models in brand from server
-  const popularModels = [
-    {
-      id: "1",
-      name: "Vogue",
-      imageUrl: "https://i.imgur.com/GbFjASW.png",
-      numCars: 72
-    },
-    {
-      id: "2",
-      name: "Evoque",
-      imageUrl: "https://i.imgur.com/GbFjASW.png",
-      numCars: 72
-    }
-  ];
+  // States
+  const [isInitialized, setIsInitialized] = useState(false);
+  const [popularModels, setPopularModels] = useState([]);
+  const [otherModels, setOtherModels] = useState([]);
 
-  // TODO: Get other models in brand from server
-  const otherModels = [
-    {
-      id: "1",
-      name: "LR2",
-      imageUrl: "https://i.imgur.com/GbFjASW.png",
-      numCars: 72
-    },
-    {
-      id: "2",
-      name: "LR4",
-      imageUrl: "https://i.imgur.com/GbFjASW.png",
-      numCars: 72
-    }
-  ];
+  // Lifecycle methods
+  useEffect(() => {
+    (async () => {
+      try {
+        setIsInitialized(false);
+        const brandId = props.navigation.getParam('brandId');
+        const res = await getModels(brandId);
+        setPopularModels(res.data.popularModels);
+        setOtherModels(res.data.otherModels);
+      } catch (error) {
+        // TODO: Enhnace error handling
+        console.error(error);
+      } finally {
+        setIsInitialized(true);
+      }
+    })();
+  }, []);
 
   // Handlers
   const onModelClick = (model) => {
@@ -54,41 +47,47 @@ export default function SearchModelScreen(props) {
 
   return (
     <>
-      <ScrollView style={styles.container}>
-        <ListHeader title="Popular Models" />
-        {popularModels.map((model) => {
-          return (
-            <ListItemImageNumCars
-              key={model.id}
-              name={model.name}
-              imageUrl={model.imageUrl}
-              imageSize={{ width: 56, height: 38.5 }}
-              extraMargin={{ marginLeft: 7 }}
-              numCars={model.numCars}
-              onPress={onModelClick(model)}
-            />
-          );
-        })}
-        <ListHeader title="Other Models" />
-        {otherModels.map((model) => {
-          return (
-            <ListItemImageNumCars
-              key={model.id}
-              name={model.name}
-              imageUrl={model.imageUrl}
-              imageSize={{ width: 56, height: 38.5 }}
-              extraMargin={{ marginLeft: 7 }}
-              numCars={model.numCars}
-              onPress={onModelClick(model)}
-            />
-          );
-        })}
-      </ScrollView>
-      <Button
-        backgroundColor={styles.searchButtonContainer}
-        buttonName="Search (72 Cars)"
-        onPress={onSearchButtonClick}
-      ></Button>
+      {isInitialized ? <>
+        <ScrollView style={styles.container}>
+          {popularModels.length ? <>
+            <ListHeader title="Popular Models" />
+            {popularModels.map((model) => {
+              return (
+                <ListItemImageNumCars
+                  key={model.id}
+                  name={model.name}
+                  imageUrl={'https://i.imgur.com/GbFjASW.png'}
+                  imageSize={{ width: 56, height: 38.5 }}
+                  extraMargin={{ marginLeft: 7 }}
+                  numCars={model.numCars}
+                  onPress={onModelClick(model)}
+                />
+              );
+            })}
+          </> : null}
+          {otherModels.length ? <>
+            <ListHeader title="Other Models" />
+            {otherModels.map((model) => {
+              return (
+                <ListItemImageNumCars
+                  key={model.id}
+                  name={model.name}
+                  imageUrl={'https://i.imgur.com/GbFjASW.png'}
+                  imageSize={{ width: 56, height: 38.5 }}
+                  extraMargin={{ marginLeft: 7 }}
+                  numCars={model.numCars}
+                  onPress={onModelClick(model)}
+                />
+              );
+            })}
+          </> : null}
+        </ScrollView>
+        <Button
+          backgroundColor={styles.searchButtonContainer}
+          buttonName="Search (72 Cars)"
+          onPress={onSearchButtonClick}
+        ></Button>
+      </> : <FullScreenSpinner />}
     </>
   );
 }
