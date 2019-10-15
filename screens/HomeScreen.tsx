@@ -9,12 +9,13 @@ import { MostViewed } from "../components/Home/MostViewed";
 import { FeaturedCarCard } from "../components/Home/FeaturedCarCard";
 import { addTodo } from "../redux/actions/TodoActions";
 
-export default function HomeScreen() {
+export default function HomeScreen(props) {
   // For Redux testing
   const todos = useSelector(state => state.TodoReducer.todos);
   const dispatch = useDispatch();
   const onPressHero = () => {
-    dispatch(addTodo("Test Redux"));
+    // For signup testing
+    props.navigation.navigate('LoginModal');
   };
   console.log("todos: ", todos);
 

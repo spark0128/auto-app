@@ -32,6 +32,12 @@ export default function LoginScreen() {
   );
 }
 
+LoginScreen.navigationOptions = ({ navigation }) => {
+  return {
+    title: "Sign In",
+  };
+};
+
 const styles = StyleSheet.create({
   container: {
     flex: 1,

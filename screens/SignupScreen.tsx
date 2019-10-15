@@ -51,6 +51,12 @@ export default function SignupScreen() {
   );
 }
 
+SignupScreen.navigationOptions = ({ navigation }) => {
+  return {
+    title: "Sign up for account",
+  };
+};
+
 const styles = StyleSheet.create({
   container: {
     flex: 1,

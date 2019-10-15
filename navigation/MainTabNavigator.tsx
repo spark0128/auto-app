@@ -1,9 +1,10 @@
 import React from "react";
-import { Platform } from "react-native";
+import { Platform, TouchableOpacity } from "react-native";
 import { createStackNavigator } from "react-navigation-stack";
 import { createBottomTabNavigator } from "react-navigation-tabs";
 
 import TabBarIcon from "../components/TabBarIcon";
+import HeaderIcon from "../components/HeaderIcon";
 import HomeScreen from "../screens/HomeScreen";
 import SearchScreen from "../screens/SearchScreen";
 import SearchModelScreen from "../screens/SearchModelScreen";
@@ -110,7 +111,7 @@ MyCollectionStack.path = "";
  */
 const MyAccountStack = createStackNavigator(
   {
-    MyAccount: SignupScreen
+    MyAccount: MyAccountScreen,
   },
   config
 );
@@ -136,6 +137,18 @@ const TabNavigator = createBottomTabNavigator({
 });
 
 /**
+ * Login, Signup
+ */
+const LoginModalStack = createStackNavigator(
+  {
+    LoginModal: LoginModalScreen,
+    Login: LoginScreen,
+    Signup: SignupScreen,
+  },
+  config
+);
+
+/**
  * Main
  */
 const MainStack = createStackNavigator(
@@ -146,7 +159,11 @@ const MainStack = createStackNavigator(
     },
     SelectPhoto: {
       screen: SelectPhotoScreen
-    }
+    },
+    LoginModal: {
+      screen: LoginModalStack,
+      navigationOptions: { header: null }
+    },
   },
   {
     mode: "modal"
