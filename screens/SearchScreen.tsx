@@ -70,7 +70,7 @@ export default function SearchScreen(props) {
   // Handlers
   const onBrandClick = (brand) => {
     return () => {
-      props.navigation.push("SelectModel", {
+      props.navigation.push("SearchModel", {
         brandId: brand.id,
         brandName: brand.name
       });

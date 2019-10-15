@@ -3,7 +3,7 @@ import { View, Text, StyleSheet } from "react-native";
 import { TextInputBasic } from "../common/TextInputCustom";
 import { SecondaryButton } from "../common/Button";
 
-export function FindPasswordScreen() {
+export default function FindPasswordScreen() {
   return (
     <View style={styles.container}>
       <Text style={styles.infoText}>

@@ -1,12 +1,15 @@
 import React from "react";
 import { View, Text, Image, StyleSheet } from "react-native";
+import { TouchableOpacity } from "react-native-gesture-handler";
 
 export function Select(props) {
   return (
-    <View style={[styles.container, props.containerWidth]}>
-      <Text style={styles.name}>{props.name}</Text>
-      <Image style={styles.dropdownArrow} />
-    </View>
+    <TouchableOpacity activeOpacity={0.8} {...props}>
+      <View style={[styles.container, props.containerWidth]}>
+        <Text style={styles.name}>{props.name}</Text>
+        <Image style={styles.dropdownArrow} />
+      </View>
+    </TouchableOpacity>
   );
 }
 

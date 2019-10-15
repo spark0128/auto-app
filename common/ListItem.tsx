@@ -1,5 +1,12 @@
 import React from "react";
-import { Text, View, StyleSheet, TouchableOpacity, Image } from "react-native";
+import {
+  Text,
+  View,
+  StyleSheet,
+  TouchableOpacity,
+  Image,
+  TouchableWithoutFeedback
+} from "react-native";
 
 export function ListItemBasic(props) {
   return (
@@ -30,6 +37,20 @@ export function ListItemImageNumCars(props) {
   );
 }
 
+export function ListItemSelectBrand(props) {
+  return (
+    <TouchableWithoutFeedback {...props}>
+      <View style={styles.listItemSelectBrand}>
+        <Image
+          style={styles.listItemSelectBrandLogo}
+          source={{ uri: props.image }}
+        />
+        <Text style={styles.listItemSelectBrandName}>{props.name}</Text>
+      </View>
+    </TouchableWithoutFeedback>
+  );
+}
+
 const styles = StyleSheet.create({
   listItem: {
     width: "100%",
@@ -51,5 +72,20 @@ const styles = StyleSheet.create({
   numCars: {
     color: "#999999",
     marginLeft: "auto"
+  },
+  listItemSelectBrand: {
+    justifyContent: "center",
+    alignItems: "center",
+    marginHorizontal: 9,
+    marginBottom: 40
+  },
+  listItemSelectBrandLogo: {
+    width: 66,
+    height: 38,
+    marginBottom: 10
+  },
+  listItemSelectBrandName: {
+    color: "#A7A8B6",
+    fontSize: 13
   }
 });

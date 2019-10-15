@@ -4,7 +4,7 @@ import { ListHeader } from "../components/Search/ListHeader";
 import { ListItemImageNumCars } from "../common/ListItem";
 import { Button } from "../common/Button";
 
-export default function SelectModelScreen(props) {
+export default function SearchModelScreen(props) {
   // TODO: Get popular models in brand from server
   const popularModels = [
     {
@@ -40,7 +40,7 @@ export default function SelectModelScreen(props) {
   // Handlers
   const onModelClick = (model) => {
     return () => {
-      props.navigation.push("SelectModelDetail", {
+      props.navigation.push("SearchModelDetail", {
         modelId: model.id,
         modelName: model.name
       });
@@ -93,7 +93,7 @@ export default function SelectModelScreen(props) {
   );
 }
 
-SelectModelScreen.navigationOptions = ({ navigation }) => {
+SearchModelScreen.navigationOptions = ({ navigation }) => {
   return {
     title: navigation.getParam("brandName", "Brand Name")
   };

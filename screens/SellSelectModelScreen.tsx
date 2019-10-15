@@ -5,7 +5,7 @@ import { Button, ListItem } from "react-native-elements";
 import { ListHeader } from "../components/Search/ListHeader";
 import { ListItemImageNumCars } from "../common/ListItem";
 
-export default function SelectModelDetailScreen(props) {
+export default function SellSelectModelScreen(props) {
   // TODO: Get modelDetails in model from server
   const modelDetails = [{ id: "1", name: "1.8" }, { id: "2", name: "1.8 L" }];
 
@@ -45,11 +45,11 @@ export default function SelectModelDetailScreen(props) {
   );
 }
 
-SelectModelDetailScreen.navigationOptions = ({ navigation }) => {
-  return {
-    title: navigation.getParam("modelName", "Model Name")
-  };
-};
+// SellSelectModelScreen.navigationOptions = ({ navigation }) => {
+//   return {
+//     title: navigation.getParam("modelName", "Model Name")
+//   };
+// };
 
 const styles = StyleSheet.create({
   container: {

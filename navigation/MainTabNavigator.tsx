@@ -6,10 +6,11 @@ import { createBottomTabNavigator } from "react-navigation-tabs";
 import TabBarIcon from "../components/TabBarIcon";
 import HomeScreen from "../screens/HomeScreen";
 import SearchScreen from "../screens/SearchScreen";
-import SelectModelScreen from "../screens/SelectModelScreen";
-import SelectModelDetailScreen from "../screens/SelectModelDetailScreen";
+import SearchModelScreen from "../screens/SearchModelScreen";
+import SearchModelDetailScreen from "../screens/SearchModelDetailScreen";
 import SearchResultScreen from "../screens/SearchResultScreen";
 import SellScreen from "../screens/SellScreen";
+import SellSelectBrandScreen from "../screens/SellSelectBrandScreen";
 import CarInfoScreen from "../screens/CarInfoScreen";
 import SelectPhotoScreen from "../screens/SelectPhotoScreen";
 import MyCollectionScreen from "../screens/MyCollectionScreen";
@@ -18,7 +19,7 @@ import MyAccountNotLoggedInScreen from "../screens/MyAccountNotLoggedInScreen";
 import LoginModalScreen from "../screens/LoginModalScreen";
 import LoginScreen from "../screens/LoginScreen";
 import SignupScreen from "../screens/SignupScreen";
-import { FindPasswordScreen } from "../screens/FindPasswordScreen";
+import FindPasswordScreen from "../screens/FindPasswordScreen";
 
 const config: any = Platform.select({
   web: { headerMode: "screen" },
@@ -48,8 +49,8 @@ HomeStack.path = "";
 const SearchStack = createStackNavigator(
   {
     Search: SearchScreen,
-    SelectModel: SelectModelScreen,
-    SelectModelDetail: SelectModelDetailScreen,
+    SearchModel: SearchModelScreen,
+    SearchModelDetail: SearchModelDetailScreen,
     SearchResult: SearchResultScreen
   },
   config
@@ -70,7 +71,8 @@ SearchStack.path = "";
 const SellStack = createStackNavigator(
   {
     Sell: SellScreen,
-    CarInfo: CarInfoScreen
+    CarInfo: CarInfoScreen,
+    SellSelectBrand: SellSelectBrandScreen
   },
   config
 );
