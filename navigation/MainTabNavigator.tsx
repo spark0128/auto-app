@@ -8,7 +8,6 @@ import HeaderIcon from "../components/HeaderIcon";
 import HomeScreen from "../screens/HomeScreen";
 import SearchScreen from "../screens/SearchScreen";
 import SearchModelScreen from "../screens/SearchModelScreen";
-import SearchModelDetailScreen from "../screens/SearchModelDetailScreen";
 import SearchResultScreen from "../screens/SearchResultScreen";
 import SellScreen from "../screens/SellScreen";
 import SellSelectBrandScreen from "../screens/SellSelectBrandScreen";
@@ -51,7 +50,6 @@ const SearchStack = createStackNavigator(
   {
     Search: SearchScreen,
     SearchModel: SearchModelScreen,
-    SearchModelDetail: SearchModelDetailScreen,
     SearchResult: SearchResultScreen
   },
   config

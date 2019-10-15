@@ -1,31 +1,41 @@
 import React, { useState, useEffect } from "react";
-import { ScrollView, StyleSheet } from "react-native";
+import { ScrollView, StyleSheet, ProgressBarAndroid } from "react-native";
 import { ListHeader } from "../components/Search/ListHeader";
 import { ListItemImageNumCars } from "../common/ListItem";
 import { Button } from "../common/Button";
 import { getModels } from "../apis/BrandAPI";
-import { FullScreenSpinner } from "../common/FullScreenSpinner";
+import { searchCarsCount } from "../apis/CarAPI";
 
 export default function SearchModelScreen(props) {
+  const brandId = props.navigation.getParam('brandId');
+
   // States
-  const [isInitialized, setIsInitialized] = useState(false);
   const [popularModels, setPopularModels] = useState([]);
   const [otherModels, setOtherModels] = useState([]);
+  const [searchCount, setSearchCount] = useState(null);
 
   // Lifecycle methods
   useEffect(() => {
+    // Get models
     (async () => {
       try {
-        setIsInitialized(false);
-        const brandId = props.navigation.getParam('brandId');
         const res = await getModels(brandId);
         setPopularModels(res.data.popularModels);
         setOtherModels(res.data.otherModels);
       } catch (error) {
         // TODO: Enhnace error handling
         console.error(error);
-      } finally {
-        setIsInitialized(true);
+      }
+    })();
+
+    // Get search count
+    (async () => {
+      try {
+        const res = await searchCarsCount(brandId);
+        setSearchCount(res.data.count);
+      } catch (error) {
+        // TODO: Enhnace error handling
+        console.error(error);
       }
     })();
   }, []);
@@ -33,61 +43,60 @@ export default function SearchModelScreen(props) {
   // Handlers
   const onModelClick = (model) => {
     return () => {
-      props.navigation.push("SearchModelDetail", {
+      props.navigation.push("SearchResult", {
+        brandId,
         modelId: model.id,
-        modelName: model.name
       });
     };
   };
 
   const onSearchButtonClick = () => {
-    // TODO: Pass search query option
-    props.navigation.push("SearchResult");
+    props.navigation.push("SearchResult", {
+      brandId: brandId,
+    });
   };
 
   return (
     <>
-      {isInitialized ? <>
-        <ScrollView style={styles.container}>
-          {popularModels.length ? <>
-            <ListHeader title="Popular Models" />
-            {popularModels.map((model) => {
-              return (
-                <ListItemImageNumCars
-                  key={model.id}
-                  name={model.name}
-                  imageUrl={'https://i.imgur.com/GbFjASW.png'}
-                  imageSize={{ width: 56, height: 38.5 }}
-                  extraMargin={{ marginLeft: 7 }}
-                  numCars={model.numCars}
-                  onPress={onModelClick(model)}
-                />
-              );
-            })}
-          </> : null}
-          {otherModels.length ? <>
-            <ListHeader title="Other Models" />
-            {otherModels.map((model) => {
-              return (
-                <ListItemImageNumCars
-                  key={model.id}
-                  name={model.name}
-                  imageUrl={'https://i.imgur.com/GbFjASW.png'}
-                  imageSize={{ width: 56, height: 38.5 }}
-                  extraMargin={{ marginLeft: 7 }}
-                  numCars={model.numCars}
-                  onPress={onModelClick(model)}
-                />
-              );
-            })}
-          </> : null}
-        </ScrollView>
-        <Button
-          backgroundColor={styles.searchButtonContainer}
-          buttonName="Search (72 Cars)"
-          onPress={onSearchButtonClick}
-        ></Button>
-      </> : <FullScreenSpinner />}
+      <ScrollView style={styles.container}>
+        {popularModels.length ? <>
+          <ListHeader title="Popular Models" />
+          {popularModels.map((model) => {
+            return (
+              <ListItemImageNumCars
+                key={model.id}
+                name={model.name}
+                imageUrl={'https://i.imgur.com/GbFjASW.png'}
+                imageSize={{ width: 56, height: 38.5 }}
+                extraMargin={{ marginLeft: 7 }}
+                numCars={model.numCars}
+                onPress={onModelClick(model)}
+              />
+            );
+          })}
+        </> : null}
+        {otherModels.length ? <>
+          <ListHeader title="Other Models" />
+          {otherModels.map((model) => {
+            return (
+              <ListItemImageNumCars
+                key={model.id}
+                name={model.name}
+                imageUrl={'https://i.imgur.com/GbFjASW.png'}
+                imageSize={{ width: 56, height: 38.5 }}
+                extraMargin={{ marginLeft: 7 }}
+                numCars={model.numCars}
+                onPress={onModelClick(model)}
+              />
+            );
+          })}
+        </> : null}
+      </ScrollView>
+      <Button
+        backgroundColor={styles.searchButtonContainer}
+        buttonName={searchCount === null ? "Search" : `Search (${searchCount} Cars)`}
+        onPress={onSearchButtonClick}
+      ></Button>
     </>
   );
 }

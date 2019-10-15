@@ -13,15 +13,18 @@ import { ListHeader } from "../components/Search/ListHeader";
 import { ListItemImageNumCars } from "../common/ListItem";
 import { FullScreenSpinner } from "../common/FullScreenSpinner";
 import { getBrands } from "../apis/BrandAPI";
+import { searchCarsCount } from "../apis/CarAPI";
 
 export default function SearchScreen(props) {
   // States
   const [isInitialized, setIsInitialized] = useState(false);
   const [popularBrands, setPopularBrands] = useState([]);
   const [otherBrands, setOtherBrands] = useState([]);
+  const [searchCount, setSearchCount] = useState(null);
 
   // Lifecycle methods
   useEffect(() => {
+    // Get brands
     (async () => {
       try {
         setIsInitialized(false);
@@ -33,6 +36,17 @@ export default function SearchScreen(props) {
         console.error(error);
       } finally {
         setIsInitialized(true);
+      }
+    })();
+
+    // Get search count
+    (async () => {
+      try {
+        const res = await searchCarsCount();
+        setSearchCount(res.data.count);
+      } catch (error) {
+        // TODO: Enhnace error handling
+        console.error(error);
       }
     })();
   }, []);
@@ -48,7 +62,6 @@ export default function SearchScreen(props) {
   };
 
   const onSearchButtonClick = () => {
-    // TODO: Pass search query option
     props.navigation.push("SearchResult");
   };
 
@@ -62,8 +75,8 @@ export default function SearchScreen(props) {
           <Text style={styles.tabItem}>By Size</Text>
         </View>
       </View>
-      {isInitialized ? <>
-        <ScrollView style={styles.listContainer}>
+      <ScrollView style={styles.listContainer}>
+        {isInitialized ? <>
           {popularBrands.length ? <>
             <ListHeader title="Popular Brands" />
             {popularBrands.map((brand) => {
@@ -94,13 +107,13 @@ export default function SearchScreen(props) {
               );
             })}
           </> : null}
-        </ScrollView>
-        <Button
-          backgroundColor={styles.searchButtonContainer}
-          buttonName="Search (95,108 Cars)"
-          onPress={onSearchButtonClick}
-        ></Button>
-      </> : <FullScreenSpinner />}
+        </> : <FullScreenSpinner />}
+      </ScrollView>
+      <Button
+        backgroundColor={styles.searchButtonContainer}
+        buttonName={searchCount === null ? "Search" : `Search (${searchCount} Cars)`}
+        onPress={onSearchButtonClick}
+      ></Button>
     </>
   );
 }
