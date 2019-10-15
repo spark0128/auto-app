@@ -11,8 +11,11 @@ import { CheckBox } from 'react-native-elements'
 import { TextInputBasic, TextInputWithButton } from "../common/TextInputCustom";
 import { PrimaryButton } from "../common/Button";
 import { PasswordInputWithConfirm } from "../common/PasswordInput";
+import { requestVerification, confirmVerification, signup } from "../apis/AuthAPI";
+import handleResponseError from '../libs/handleResponseError';
+import AuthTokenService from '../services/AuthTokenService';
 
-export default function SignupScreen() {
+export default function SignupScreen(props) {
   // States
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
@@ -24,18 +27,40 @@ export default function SignupScreen() {
   const [isPhoneConfirmed, setIsPhoneConfirmed] = useState(false);
   const [isServiceAgreementChecked, setIsServiceAgreementChecked] = useState(false);
   const [isPrivacyAgreementChecked, setIsPrivacyAgreementChecked] = useState(false);
+  const [isVerficiationRequesting, setIsVerificationRequesting] = useState(false);
+  const [isVerificationConfirming, setIsVerificationConfirming] = useState(false);
+  const [isSignupSubmitting, setIsSignupSubmitting] = useState(false);
+  const [verificationId, setVerificationId] = useState("");
 
   // Handlers
-  const onPressVerify = () => {
-    // TODO: Request phone verification to server
+  const onPressVerify = async () => {
+    try {
+      setIsVerificationRequesting(true);
+      const res = await requestVerification(phoneNumber);
+      const { data } = res;
+      setVerificationId(data._id);
+      return alert('Success to request verification');
+    } catch (error) {
+      return handleResponseError(error);
+    } finally {
+      setIsVerificationRequesting(false);
+    }
   }
 
-  const onPressConfirm = () => {
-    // TODO: Confirm phone verification to server
-    setIsPhoneConfirmed(true);
+  const onPressConfirm = async () => {
+    try {
+      setIsVerificationConfirming(true);
+      await confirmVerification(verificationId, verificationNumber);
+      setIsPhoneConfirmed(true);
+      return alert('Success to confirm verification');
+    } catch (error) {
+      return handleResponseError(error);
+    } finally {
+      setIsVerificationConfirming(false);
+    }
   }
 
-  const onPressSignup = () => {
+  const onPressSignup = async () => {
     if (!firstName || !lastName || !phoneNumber || !username || !password) {
       return alert('Fill in all information');
     }
@@ -51,7 +76,18 @@ export default function SignupScreen() {
     if (!isPrivacyAgreementChecked) {
       return alert('Check privacy agreement');
     }
-    // TODO: Request signup to server
+
+    try {
+      setIsSignupSubmitting(true);
+      const res = await signup({ firstName, lastName, phoneNumber, username, password });
+      const { data } = res;
+      await AuthTokenService.saveToken(data.token);
+      props.navigation.dismiss();
+    } catch (error) {
+      return handleResponseError(error);
+    } finally {
+      setIsSignupSubmitting(false);
+    }
   }
 
   return (
@@ -73,6 +109,7 @@ export default function SignupScreen() {
         onChangeText={setPhoneNumber}
         value={phoneNumber}
         onPress={onPressVerify}
+        loading={isVerficiationRequesting}
       />
       <TextInputWithButton
         name="Verification Number"
@@ -81,6 +118,7 @@ export default function SignupScreen() {
         onChangeText={setVerificationNumber}
         value={verificationNumber}
         onPress={onPressConfirm}
+        loading={isVerificationConfirming}
       />
       <TextInputBasic
         name="Username"
@@ -111,6 +149,7 @@ export default function SignupScreen() {
         style={styles.signupButton}
         backgroundColor={{ backgroundColor: "#D9D9D9" }}
         onPress={onPressSignup}
+        loading={isSignupSubmitting}
       >
         Sign up
       </PrimaryButton>
