@@ -1,5 +1,5 @@
 import React from "react";
-import { useSelector, useDispatch } from 'react-redux';
+import { useSelector, useDispatch } from "react-redux";
 import { ScrollView, StyleSheet, View } from "react-native";
 
 import colors from "../constants/Colors";
@@ -11,7 +11,7 @@ import { addTodo } from "../redux/actions/TodoActions";
 
 export default function HomeScreen() {
   // For Redux testing
-  const todos = useSelector(state => state.TodoReducer.todos);
+  const todos = useSelector((state) => state.TodoReducer.todos);
   const dispatch = useDispatch();
   const onPressHero = () => {
     dispatch(addTodo("Test Redux"));

@@ -20,6 +20,7 @@ import LoginModalScreen from "../screens/LoginModalScreen";
 import LoginScreen from "../screens/LoginScreen";
 import SignupScreen from "../screens/SignupScreen";
 import FindPasswordScreen from "../screens/FindPasswordScreen";
+import SellSelectModelScreen from "../screens/SellSelectModelScreen";
 
 const config: any = Platform.select({
   web: { headerMode: "screen" },
@@ -72,7 +73,8 @@ const SellStack = createStackNavigator(
   {
     Sell: SellScreen,
     CarInfo: CarInfoScreen,
-    SellSelectBrand: SellSelectBrandScreen
+    SellSelectBrand: SellSelectBrandScreen,
+    SellSelectModel: SellSelectModelScreen
   },
   config
 );
