@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useSelector, useDispatch } from 'react-redux';
 import { ScrollView, StyleSheet, View } from "react-native";
 
@@ -8,16 +8,25 @@ import { MostRecommended } from "../components/Home/MostRecommended";
 import { MostViewed } from "../components/Home/MostViewed";
 import { FeaturedCarCard } from "../components/Home/FeaturedCarCard";
 import { addTodo } from "../redux/actions/TodoActions";
+import { getMe } from "../apis/UserAPI";
+import { saveUser } from "../redux/actions/UserActions";
 
 export default function HomeScreen(props) {
-  // For Redux testing
-  const todos = useSelector(state => state.TodoReducer.todos);
+  // Redux
   const dispatch = useDispatch();
-  const onPressHero = () => {
-    // For signup testing
-    props.navigation.navigate('LoginModal');
-  };
-  console.log("todos: ", todos);
+
+  // Lifecycle methods
+  useEffect(() => {
+    (async () => {
+      try {
+        // Check authentication
+        const res = await getMe();
+        dispatch(saveUser(res.data));
+      } catch (error) {
+        // Not Logged In
+      }
+    })();
+  }, []);
 
   // TODO: Get most recommended cars from server
   // TODO: Get most viewed cars from server
@@ -48,7 +57,7 @@ export default function HomeScreen(props) {
   return (
     <View style={styles.container}>
       <ScrollView style={styles.container}>
-        <Hero onPress={onPressHero} />
+        <Hero onPress={() => {}} />
         <MostRecommended />
         <View style={{ backgroundColor: "#F2F2F2", height: 10 }} />
         <MostViewed />

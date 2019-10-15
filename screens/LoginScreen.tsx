@@ -1,12 +1,17 @@
 import React, { useState } from "react";
+import { useDispatch } from "react-redux";
 import { View, Text, Image, StyleSheet } from "react-native";
 import { TextInputBasic } from "../common/TextInputCustom";
 import { SecondaryButton } from "../common/Button";
 import handleResponseError from '../libs/handleResponseError';
 import AuthTokenService from '../services/AuthTokenService';
 import { signin } from "../apis/AuthAPI";
+import { saveUser } from "../redux/actions/UserActions";
 
 export default function LoginScreen(props) {
+  // Redux
+  const dispatch = useDispatch();
+
   // States
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
@@ -23,6 +28,7 @@ export default function LoginScreen(props) {
       const res = await signin(username, password);
       const { data } = res;
       await AuthTokenService.saveToken(data.token);
+      await dispatch(saveUser(data.user));
       props.navigation.dismiss();
     } catch (error) {
       return handleResponseError(error);

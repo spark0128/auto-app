@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { useDispatch } from "react-redux";
 import {
   View,
   Text,
@@ -14,8 +15,12 @@ import { PasswordInputWithConfirm } from "../common/PasswordInput";
 import { requestVerification, confirmVerification, signup } from "../apis/AuthAPI";
 import handleResponseError from '../libs/handleResponseError';
 import AuthTokenService from '../services/AuthTokenService';
+import { saveUser } from "../redux/actions/UserActions";
 
 export default function SignupScreen(props) {
+  // Redux
+  const dispatch = useDispatch();
+
   // States
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
@@ -82,6 +87,7 @@ export default function SignupScreen(props) {
       const res = await signup({ firstName, lastName, phoneNumber, username, password });
       const { data } = res;
       await AuthTokenService.saveToken(data.token);
+      await dispatch(saveUser(data.user));
       props.navigation.dismiss();
     } catch (error) {
       return handleResponseError(error);

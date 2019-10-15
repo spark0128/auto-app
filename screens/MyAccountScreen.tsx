@@ -1,22 +1,37 @@
-import React from "react";
-import { Text, View, Image, StyleSheet } from "react-native";
+import React, { useState } from "react";
+import { useSelector } from "react-redux";
+import { Text, View, Image, StyleSheet, TouchableOpacity } from "react-native";
 import { SellYourCar } from "../components/MyAccount/SellYourCar";
 import { ListItems } from "../components/MyAccount/ListItems";
 
-export default function MyAccountScreen() {
+export default function MyAccountScreen(props) {
+  // Redux
+  const isLoggedIn = useSelector((state) => !!state.UserReducer.user);
+  const user = useSelector((state) => state.UserReducer.user);
+
+  // Handers
+  const onClickLoginOrSetting = () => {
+    if (isLoggedIn) {
+      // TODO: navigate setting
+    } else {
+      props.navigation.navigate('LoginModal');
+    }
+  }
+
   return (
     <>
       <View style={styles.container}>
         <View style={styles.headerContainer}>
           <View style={styles.accountContainer}>
             <View style={styles.mainTextContainer}>
-              <Text style={styles.mainText}>Login or Sign up</Text>
-              <Image></Image>
+              <Text style={styles.mainText}>
+                {isLoggedIn ? `${user.firstName} ${user.lastName}` :  "Login or Sign up"}</Text>
             </View>
-            <View style={styles.subTextContainer}>
-              <Text style={styles.subText}>Login for full access</Text>
-              <Image></Image>
-            </View>
+            <TouchableOpacity style={styles.subTextContainer} onPress={onClickLoginOrSetting}>
+              <Text style={styles.subText}>
+                {isLoggedIn ? 'My Page and Settings' : 'Login for full access'}
+              </Text>
+            </TouchableOpacity>
           </View>
           <View style={styles.buttonContainer}>
             <Text>Icon1</Text>
