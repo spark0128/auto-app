@@ -1,9 +1,10 @@
 import React, { useState, useEffect } from "react";
-import { ScrollView, StyleSheet } from "react-native";
+import { ScrollView, StyleSheet, Text } from "react-native";
 import { FeaturedCarCard } from "../components/Home/FeaturedCarCard";
 import FilterOrderButton from "../common/FilterOrderButton";
 import { searchCars, searchCarsCount } from "../apis/CarAPI";
 import handleResponseError from "../libs/handleResponseError";
+import { OrderOverlay } from "../components/Search/OrderOverlay";
 
 export default function SearchResultScreen(props) {
   const brandId = props.navigation.getParam('brandId');
@@ -12,6 +13,8 @@ export default function SearchResultScreen(props) {
   // States
   const [cars, setCars] = useState([]);
   const [searchCount, setSearchCount] = useState(null);
+  const [orderOption, setOrderOption] = useState(null);
+  const [isOrderVisible, setIsOrderVisible] = useState(false);
 
   // Lifecycle methods
   useEffect(() => {
@@ -38,11 +41,11 @@ export default function SearchResultScreen(props) {
   }, []);
 
   // Handlers
-  const onFloatingButtonClick = (index) => {
+  const onPressFloatingButton = (index) => {
     if (index === 0) {
       console.log("filter button clicked");
     } else if (index === 1) {
-      console.log("order button clicked");
+      setIsOrderVisible(true);
     }
   };
 
@@ -54,6 +57,12 @@ export default function SearchResultScreen(props) {
     }
   }
 
+  const onChangeOrderOption = (option) => {
+    setOrderOption(option);
+    setIsOrderVisible(false);
+    // TODO: Reorder search results
+  }
+
   return (
     <>
       <ScrollView style={styles.container}>
@@ -61,7 +70,11 @@ export default function SearchResultScreen(props) {
           return <FeaturedCarCard key={car._id} car={car} onPress={onPressCar(car)} />;
         })}
       </ScrollView>
-      <FilterOrderButton />
+      <FilterOrderButton onPress={onPressFloatingButton}/>
+      <OrderOverlay
+        isVisible={isOrderVisible}
+        onBackdropPress={() => setIsOrderVisible(false)}
+        onPressItem={onChangeOrderOption} />
     </>
   );
 }
@@ -76,5 +89,5 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: "#f5f5f5"
-  }
+  },
 });
