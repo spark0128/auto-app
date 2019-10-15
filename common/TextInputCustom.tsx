@@ -15,6 +15,8 @@ export function TextInputBasic(props) {
         placeholder={props.name}
         placeholderTextColor="#9A9A9A"
         style={styles.name}
+        onChangeText={props.onChangeText}
+        value={props.value}
       />
     </View>
   );
@@ -27,8 +29,10 @@ export function TextInputWithButton(props) {
         placeholder={props.name}
         placeholderTextColor="#9A9A9A"
         style={styles.name}
+        onChangeText={props.onChangeText}
+        value={props.value}
       />
-      <TouchableOpacity activeOpacity={0.8}>
+      <TouchableOpacity activeOpacity={0.8} onPress={props.onPress}>
         <View style={styles.buttonContainer}>
           <Text style={styles.buttonText}>{props.buttonName}</Text>
         </View>

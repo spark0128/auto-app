@@ -13,7 +13,7 @@ export function Button(props) {
 
 export function PrimaryButton(props) {
   return (
-    <TouchableOpacity>
+    <TouchableOpacity onPress={props.onPress}>
       <View style={[styles.primaryButtonContainer, props.backgroundColor]}>
         <Text style={styles.primaryButtonText}>{props.children}</Text>
       </View>
