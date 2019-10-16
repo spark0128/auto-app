@@ -82,6 +82,23 @@ export function ListItemColor(props) {
   );
 }
 
+export function ListItemRightArrow(props) {
+  return (
+    <TouchableOpacity activeOpacity={0.8} {...props}>
+      <View style={styles.listItemRightArrow}>
+        <Text style={{ fontSize: 16 }}>{props.name}</Text>
+        <Image
+          style={{ width: 8, height: 18, resizeMode: "contain" }}
+          source={{
+            uri:
+              "https://s3-ap-southeast-1.amazonaws.com/cdn.automate-kh.com/assets/images/bg_right_arrow_list.png"
+          }}
+        ></Image>
+      </View>
+    </TouchableOpacity>
+  );
+}
+
 const styles = StyleSheet.create({
   listItem: {
     width: "100%",
@@ -97,9 +114,7 @@ const styles = StyleSheet.create({
   listItemImage: {
     marginRight: 6
   },
-  listItemName: {
-    fontWeight: "500"
-  },
+  listItemName: {},
   numCars: {
     color: "#999999",
     marginLeft: "auto"
@@ -141,5 +156,16 @@ const styles = StyleSheet.create({
   },
   listItemColorName: {
     fontSize: 13
+  },
+  listItemRightArrow: {
+    width: "100%",
+    flexDirection: "row",
+    backgroundColor: "#fff",
+    paddingHorizontal: 18,
+    height: 55,
+    justifyContent: "space-between",
+    alignItems: "center",
+    borderBottomColor: "#D8D8DA",
+    borderBottomWidth: 1
   }
 });

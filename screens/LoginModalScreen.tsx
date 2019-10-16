@@ -5,87 +5,180 @@ import {
   View,
   Image,
   StyleSheet,
-  TouchableOpacity
+  TouchableOpacity,
+  Platform,
+  Dimensions
 } from "react-native";
 import HeaderIcon from "../components/HeaderIcon";
 import { ContactSupport } from "../common/ContactSupport";
 
-export default function LoginModalScreen(props) {
-
-  // Handlers
-  const onSignInClick = () => {
-    props.navigation.push('Login');
-  };
-
-  const onSignUpClick = () => {
-    props.navigation.push('Signup');
-  };
-
-  return (
-    <ScrollView style={styles.container}>
-      <Text style={styles.headingText}>
-        <Text>Login to Automate{"\n"}</Text>
-        <Text style={styles.headingTextBold}>
-          to find more information on local cars!
-        </Text>
-      </Text>
-      <View style={styles.socialButtonFB}>
-        <Image source={{}}></Image>
-        <Text style={styles.socialButtonText}>Login with Facebook</Text>
-      </View>
-      <View style={styles.socialButtonWeChat}>
-        <Image source={{}}></Image>
-        <Text style={styles.socialButtonText}>Login with WeChat</Text>
-      </View>
-      <TouchableOpacity style={styles.loginButton} onPress={onSignInClick}>
-        <Image source={{}}></Image>
-        <Text style={styles.socialButtonText}>Login with Username</Text>
-      </TouchableOpacity>
-      <TouchableOpacity style={styles.signupButton} onPress={onSignUpClick}>
-        <Image source={{}}></Image>
-        <Text style={styles.buttonText}>Sign up for account</Text>
-      </TouchableOpacity>
-      <View style={styles.loginDealerButton}>
-        <Image source={{}}></Image>
-        <Text style={styles.loginDealerButtonText}>Login as Dealer</Text>
-      </View>
-      <Text style={styles.signupDealer}>Sign up for Dealer</Text>
-      <ContactSupport />
-    </ScrollView>
-  );
-}
-
 LoginModalScreen.navigationOptions = ({ navigation }) => {
   return {
-    title: "Sign In",
-    headerLeft: <>
-      <TouchableOpacity onPress={() => { navigation.dismiss() }}>
-        <HeaderIcon name="md-close" />
-      </TouchableOpacity>
-    </>,
+    header: (
+      <View
+        style={{
+          height: Platform.OS === "ios" ? 94 : 72,
+          backgroundColor: "#fff",
+          justifyContent: "flex-end",
+          paddingBottom: 20
+        }}
+      >
+        <View
+          style={{
+            flexDirection: "row",
+            justifyContent: "space-between",
+            paddingLeft: 30,
+            paddingRight: 25
+          }}
+        >
+          <TouchableOpacity onPress={() => navigation.dismiss()}>
+            <Image
+              style={{ width: 17, height: 17, resizeMode: "contain" }}
+              source={{
+                uri:
+                  "https://s3-ap-southeast-1.amazonaws.com/cdn.automate-kh.com/assets/images/btn_exit_grey.png"
+              }}
+            ></Image>
+          </TouchableOpacity>
+          <TouchableOpacity>
+            <Text
+              style={{
+                color: "#454545",
+                textDecorationLine: "underline"
+              }}
+            >
+              Sign up for Dealer
+            </Text>
+          </TouchableOpacity>
+        </View>
+      </View>
+    )
   };
 };
 
+export default function LoginModalScreen(props) {
+  const { height } = Dimensions.get("window");
+  const navigationBarHeight = Platform.OS === "ios" ? 64 : 54;
+
+  // Handlers
+  const onSignInClick = () => {
+    props.navigation.push("Login");
+  };
+
+  const onSignUpClick = () => {
+    props.navigation.push("Signup");
+  };
+
+  return (
+    <>
+      <ScrollView>
+        <View
+          style={{
+            height:
+              Platform.OS === "ios"
+                ? height - 94 - navigationBarHeight
+                : height - 72 - navigationBarHeight,
+            paddingHorizontal: 30,
+            justifyContent: "space-between",
+            paddingVertical: 58
+          }}
+        >
+          <Text style={styles.headingText}>
+            <Text>Login to Automate{"\n"}</Text>
+            <Text style={styles.headingTextBold}>
+              to find more information on local cars!
+            </Text>
+          </Text>
+          <View>
+            <TouchableOpacity onPress={onSignInClick}>
+              <View style={styles.loginButton}>
+                <Image
+                  style={{
+                    width: 28,
+                    height: 28,
+                    resizeMode: "contain",
+                    position: "absolute",
+                    top: 10,
+                    left: 19
+                  }}
+                  source={{
+                    uri:
+                      "https://s3-ap-southeast-1.amazonaws.com/cdn.automate-kh.com/assets/images/bg_user_login.png"
+                  }}
+                ></Image>
+                <Text style={styles.buttonTextWhite}>Login User</Text>
+              </View>
+            </TouchableOpacity>
+            <TouchableOpacity activeOpacity={0.8}>
+              <View style={styles.socialButtonFB}>
+                <Image
+                  style={{
+                    width: 28,
+                    height: 28,
+                    resizeMode: "contain",
+                    position: "absolute",
+                    top: 10,
+                    left: 19
+                  }}
+                  source={{
+                    uri:
+                      "https://s3-ap-southeast-1.amazonaws.com/cdn.automate-kh.com/assets/images/bg_facebook.png"
+                  }}
+                ></Image>
+                <Text style={styles.buttonTextWhite}>Login with Facebook</Text>
+              </View>
+            </TouchableOpacity>
+            <TouchableOpacity activeOpacity={0.8}>
+              <View style={styles.socialButtonWeChat}>
+                <Image
+                  style={{
+                    width: 28,
+                    height: 28,
+                    resizeMode: "contain",
+                    position: "absolute",
+                    top: 10,
+                    left: 19
+                  }}
+                  source={{
+                    uri:
+                      "https://s3-ap-southeast-1.amazonaws.com/cdn.automate-kh.com/assets/images/bg_wechat.png"
+                  }}
+                ></Image>
+                <Text style={styles.buttonTextWhite}>Login with WeChat</Text>
+              </View>
+            </TouchableOpacity>
+            <TouchableOpacity
+              style={styles.signupButton}
+              onPress={onSignUpClick}
+            >
+              <Image source={{}}></Image>
+              <Text style={styles.buttonText}>Sign up for account</Text>
+            </TouchableOpacity>
+            <ContactSupport />
+          </View>
+        </View>
+      </ScrollView>
+    </>
+  );
+}
+
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    paddingHorizontal: 30
-  },
-  exitButton: {
-    width: 17,
-    height: 17,
-    resizeMode: "contain",
-    marginBottom: 48,
-    alignSelf: "flex-start"
-  },
   headingText: {
     fontSize: 24,
-    lineHeight: 29,
-    marginBottom: 56,
-    marginTop: 44,
+    lineHeight: 30
   },
   headingTextBold: {
     fontWeight: "600"
+  },
+  loginButton: {
+    width: "100%",
+    height: 48,
+    backgroundColor: "#2A73E8",
+    borderRadius: 3,
+    flexDirection: "row",
+    justifyContent: "center",
+    alignItems: "center",
+    marginBottom: 8
   },
   socialButtonFB: {
     width: "100%",
@@ -105,30 +198,23 @@ const styles = StyleSheet.create({
     alignItems: "center",
     marginBottom: 8
   },
-  loginButton: {
-    width: "100%",
-    height: 48,
-    backgroundColor: "#2A73E8",
-    borderRadius: 3,
-    justifyContent: "center",
-    alignItems: "center",
-    marginBottom: 8
-  },
+
   signupButton: {
     width: "100%",
     height: 48,
     borderRadius: 3,
     justifyContent: "center",
     alignItems: "center",
-    marginBottom: 65,
+    marginBottom: 15,
+    marginTop: 100,
     borderColor: "#9A9A9A",
     borderWidth: 1
   },
-  socialButtonText: {
+  buttonTextWhite: {
     color: "#fff",
     fontSize: 15
   },
-  buttonText: {
+  buttonTextBlue: {
     color: "#2A73E8",
     fontSize: 15
   },
@@ -145,12 +231,5 @@ const styles = StyleSheet.create({
   loginDealerButtonText: {
     color: "#6E6E6E",
     fontSize: 14
-  },
-  signupDealer: {
-    textDecorationLine: "underline",
-    fontSize: 14,
-    color: "#8E8E8E",
-    marginBottom: 36,
-    alignSelf: "center"
   }
 });

@@ -11,7 +11,7 @@ import SearchModelScreen from "../screens/SearchModelScreen";
 import SearchResultScreen from "../screens/SearchResultScreen";
 import SellScreen from "../screens/SellScreen";
 import SellSelectBrandScreen from "../screens/SellSelectBrandScreen";
-import CarInfoScreen from "../screens/CarInfoScreen";
+import SellCarInfoScreen from "../screens/SellCarInfoScreen";
 import CarDetailScreen from "../screens/CarDetailScreen";
 import SelectPhotoScreen from "../screens/SelectPhotoScreen";
 import MyCollectionScreen from "../screens/MyCollectionScreen";
@@ -34,7 +34,7 @@ const config: any = Platform.select({
 const HomeStack = createStackNavigator(
   {
     Home: HomeScreen,
-    CarDetail: CarDetailScreen,
+    CarDetail: CarDetailScreen
   },
   config
 );
@@ -54,7 +54,7 @@ const SearchStack = createStackNavigator(
     Search: SearchScreen,
     SearchModel: SearchModelScreen,
     SearchResult: SearchResultScreen,
-    CarDetail: CarDetailScreen,
+    CarDetail: CarDetailScreen
   },
   config
 );
@@ -74,7 +74,7 @@ SearchStack.path = "";
 const SellStack = createStackNavigator(
   {
     Sell: SellScreen,
-    CarInfo: CarInfoScreen,
+    SellCarInfo: SellCarInfoScreen,
     SellSelectBrand: SellSelectBrandScreen,
     SellSelectModel: SellSelectModelScreen
   },
@@ -114,7 +114,7 @@ MyCollectionStack.path = "";
  */
 const MyAccountStack = createStackNavigator(
   {
-    MyAccount: MyAccountScreen,
+    MyAccount: MyAccountScreen
   },
   config
 );
@@ -146,7 +146,7 @@ const LoginModalStack = createStackNavigator(
   {
     LoginModal: LoginModalScreen,
     Login: LoginScreen,
-    Signup: SignupScreen,
+    Signup: SignupScreen
   },
   config
 );
@@ -166,7 +166,7 @@ const MainStack = createStackNavigator(
     LoginModal: {
       screen: LoginModalStack,
       navigationOptions: { header: null }
-    },
+    }
   },
   {
     mode: "modal"

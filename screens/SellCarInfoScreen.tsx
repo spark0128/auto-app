@@ -14,7 +14,11 @@ import { Overlay } from "react-native-elements";
 import Constants from "expo-constants";
 import * as Permissions from "expo-permissions";
 import { Select } from "../common/Select";
-import { TextInputWithUnit } from "../common/TextInputCustom";
+import {
+  TextInputWithUnit,
+  TextInputPrice,
+  TextInputCarDesc
+} from "../common/TextInputCustom";
 import Carousel from "../components/Sell/Carousel";
 import { SelectYear } from "../components/Sell/SelectYear";
 import { SelectCondition } from "../components/Sell/SelectCondition";
@@ -22,8 +26,9 @@ import { SelectTransmission } from "../components/Sell/SelectTransmission";
 import { SelectFuel } from "../components/Sell/SelectFuel";
 import { SelectColor } from "../components/Sell/SelectColor";
 import { SelectExtCondition } from "../components/Sell/SelectExtCondition";
+import { Options } from "../components/Sell/Options";
 
-export default function CarInfo(props) {
+export default function SellCarInfo(props) {
   // TODO: Text Validation
   // TODO: Screen move up when keyboard popup
 
@@ -254,12 +259,15 @@ export default function CarInfo(props) {
           </View>
           <View style={styles.sectionContainer}>
             <Text style={styles.sectionTitle}>Main Options</Text>
+            <Options />
           </View>
           <View style={styles.sectionContainer}>
             <Text style={styles.sectionTitle}>Selling Price</Text>
+            <TextInputPrice name="Price you wish to sell" />
           </View>
           <View style={styles.sectionContainer}>
             <Text style={styles.sectionTitle}>Tell us about your car</Text>
+            <TextInputCarDesc />
           </View>
           <View style={styles.checkBoxContainer}>
             <Text>

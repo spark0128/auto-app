@@ -5,7 +5,7 @@ import {
   StyleSheet,
   Platform,
   TextInput,
-  Text,
+  Text
 } from "react-native";
 
 import { Button } from "../common/Button";
@@ -76,42 +76,62 @@ export default function SearchScreen(props) {
         </View>
       </View>
       <ScrollView style={styles.listContainer}>
-        {isInitialized ? <>
-          {popularBrands.length ? <>
-            <ListHeader title="Popular Brands" />
-            {popularBrands.map((brand) => {
-              return (
-                <ListItemImageNumCars
-                  key={brand.id}
-                  name={brand.name}
-                  imageUrl={brand.image}
-                  imageSize={{ width: 56, height: 32 }}
-                  numCars={brand.numCars}
-                  onPress={onBrandClick(brand)}
-                />
-              );
-            })}
-          </> : null}
-          {otherBrands.length ? <>
-            <ListHeader title="Other Brands" />
-            {otherBrands.map((brand) => {
-              return (
-                <ListItemImageNumCars
-                  key={brand.id}
-                  name={brand.name}
-                  imageUrl={brand.image}
-                  imageSize={{ width: 56, height: 32 }}
-                  numCars={brand.numCars}
-                  onPress={onBrandClick(brand)}
-                />
-              );
-            })}
-          </> : null}
-        </> : <FullScreenSpinner />}
+        {isInitialized ? (
+          <>
+            {popularBrands.length ? (
+              <>
+                <ListHeader title="Popular Brands" />
+                {popularBrands.map((brand) => {
+                  return (
+                    <ListItemImageNumCars
+                      key={brand.id}
+                      name={brand.name}
+                      imageUrl={brand.image}
+                      imageSize={{
+                        width: 56,
+                        height: 35,
+                        resizeMode: "contain"
+                      }}
+                      numCars={brand.numCars}
+                      onPress={onBrandClick(brand)}
+                    />
+                  );
+                })}
+              </>
+            ) : null}
+            {otherBrands.length ? (
+              <>
+                <ListHeader title="Other Brands" />
+                {otherBrands.map((brand) => {
+                  return (
+                    <ListItemImageNumCars
+                      key={brand.id}
+                      name={brand.name}
+                      imageUrl={brand.image}
+                      imageSize={{
+                        width: 56,
+                        height: 32,
+                        resizeMode: "contain"
+                        // borderColor: "#eee",
+                        // borderWidth: 1
+                      }}
+                      numCars={brand.numCars}
+                      onPress={onBrandClick(brand)}
+                    />
+                  );
+                })}
+              </>
+            ) : null}
+          </>
+        ) : (
+          <FullScreenSpinner />
+        )}
       </ScrollView>
       <Button
         backgroundColor={styles.searchButtonContainer}
-        buttonName={searchCount === null ? "Search" : `Search (${searchCount} Cars)`}
+        buttonName={
+          searchCount === null ? "Search" : `Search (${searchCount} Cars)`
+        }
         onPress={onSearchButtonClick}
       ></Button>
     </>
@@ -130,9 +150,11 @@ SearchScreen.navigationOptions = {
     >
       <TextInput
         style={{
+          width: "100%",
           height: 35,
+          color: "#fff",
           backgroundColor: "#0733B5",
-          paddingLeft: 22,
+          paddingHorizontal: 22,
           marginBottom: Platform.OS === "ios" ? 9 : 6,
           borderRadius: 2
         }}

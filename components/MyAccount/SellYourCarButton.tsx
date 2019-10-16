@@ -1,13 +1,16 @@
 import React from "react";
 import { View, Text, StyleSheet } from "react-native";
+import { TouchableOpacity } from "react-native-gesture-handler";
 
-export function SellYourCar() {
+export function SellYourCarButton(props) {
   return (
-    <View style={styles.container}>
-      <View style={styles.buttonContainer}>
-        <Text style={styles.buttonText}>Sell Your Car</Text>
+    <TouchableOpacity activeOpacity={0.8} {...props}>
+      <View style={styles.container}>
+        <View style={styles.buttonContainer}>
+          <Text style={styles.buttonText}>Sell Your Car</Text>
+        </View>
       </View>
-    </View>
+    </TouchableOpacity>
   );
 }
 

@@ -24,7 +24,7 @@ rearCamera: false,
 usb: true,
 bluetooth: true,
 aux: true,
-}
+}blaswan123456
 
         exteriorAndBuiltIn: {
             sunRoof: true,

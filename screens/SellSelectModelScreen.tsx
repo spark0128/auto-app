@@ -23,7 +23,7 @@ export default function SellSelectModelScreen(props) {
   const onModelClick = (model) => {
     return () => {
       dispatch(saveModel(model.name));
-      props.navigation.navigate("CarInfo");
+      props.navigation.navigate("SellCarInfo");
     };
   };
 

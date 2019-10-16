@@ -9,8 +9,7 @@ export function ContactSupport(props) {
         source={{ uri: "https://i.imgur.com/LVVh7tQ.png" }}
       ></Image>
       <Text style={styles.infoText}>
-        Please contact 010-395-677 or support@automate-kh.com{"\n"}for any
-        issues.
+        Please contact 010-395-677 or support@automate-kh.com for any issues.
       </Text>
     </View>
   );
@@ -21,7 +20,8 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     alignContent: "center",
     marginTop: 15,
-    justifyContent: "center"
+    justifyContent: "center",
+    paddingHorizontal: 2
   },
   infoIcon: {
     width: 12,

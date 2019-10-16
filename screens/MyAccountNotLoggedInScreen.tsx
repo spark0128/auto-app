@@ -1,6 +1,6 @@
 import React from "react";
 import { Text, View, Image, StyleSheet, TouchableOpacity } from "react-native";
-import { SellYourCar } from "../components/MyAccount/SellYourCar";
+import { SellYourCar } from "../components/MyAccount/SellYourCarButton";
 import { ListItems } from "../components/MyAccount/ListItems";
 
 export default function MyAccountNotLoggedInScreen() {

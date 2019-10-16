@@ -8,9 +8,9 @@ export default function SellScreen(props) {
   // Handlers
   const onGoButtonClick = async () => {
     if (await AuthTokenService.isLoggedIn()) {
-      props.navigation.push("CarInfo");
+      props.navigation.push("SellCarInfo");
     } else {
-      props.navigation.navigate('LoginModal');
+      props.navigation.navigate("LoginModal");
     }
   };
 
