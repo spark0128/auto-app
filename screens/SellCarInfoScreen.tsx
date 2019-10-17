@@ -10,9 +10,6 @@ import {
   CheckBox,
   TouchableOpacity
 } from "react-native";
-import { Overlay } from "react-native-elements";
-import Constants from "expo-constants";
-import * as Permissions from "expo-permissions";
 import { Select } from "../common/Select";
 import {
   TextInputWithUnit,
@@ -20,6 +17,12 @@ import {
   TextInputCarDesc
 } from "../common/TextInputCustom";
 import Carousel from "../components/Sell/Carousel";
+import { SecondaryButton } from "../common/Button";
+
+import { Overlay } from "react-native-elements";
+import Constants from "expo-constants";
+import * as Permissions from "expo-permissions";
+
 import { SelectYear } from "../components/Sell/SelectYear";
 import { SelectCondition } from "../components/Sell/SelectCondition";
 import { SelectTransmission } from "../components/Sell/SelectTransmission";
@@ -100,6 +103,10 @@ export default function SellCarInfo(props) {
   const onExtConditionClick = (value) => {
     setExtCondition(value);
     setIsExtConditionVisible(false);
+  };
+
+  const onNextButtonClick = () => {
+    props.navigation.push("SellSellerInfo");
   };
 
   return (
@@ -276,9 +283,12 @@ export default function SellCarInfo(props) {
               information I have provided.
             </Text>
           </View>
-          <View style={styles.buttonContainer}>
-            <Text style={styles.buttonText}>Next</Text>
-          </View>
+          <SecondaryButton
+            backgroundColor={{ backgroundColor: "#1450F8" }}
+            onPress={onNextButtonClick}
+          >
+            Next
+          </SecondaryButton>
         </View>
       </ScrollView>
     </>

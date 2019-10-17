@@ -1,6 +1,13 @@
 import React from "react";
-import { Text, View, StyleSheet, TouchableOpacity, ActivityIndicator } from "react-native";
+import {
+  Text,
+  View,
+  StyleSheet,
+  TouchableOpacity,
+  ActivityIndicator
+} from "react-native";
 
+// Bottom of the screen
 export function Button(props) {
   return (
     <TouchableOpacity activeOpacity={0.8} {...props}>
@@ -15,17 +22,26 @@ export function PrimaryButton(props) {
   return (
     <TouchableOpacity onPress={props.onPress}>
       <View style={[styles.primaryButtonContainer, props.backgroundColor]}>
-        {props.loading ? <ActivityIndicator size="small" /> : <Text style={styles.primaryButtonText}>{props.children}</Text>}
+        {props.loading ? (
+          <ActivityIndicator size="small" />
+        ) : (
+          <Text style={styles.primaryButtonText}>{props.children}</Text>
+        )}
       </View>
     </TouchableOpacity>
   );
 }
 
+// Thick Button
 export function SecondaryButton(props) {
   return (
     <TouchableOpacity onPress={props.onPress}>
       <View style={[styles.secondaryButtonContainer, props.backgroundColor]}>
-        {props.loading ? <ActivityIndicator size="small" /> : <Text style={styles.secondaryButtonText}>{props.children}</Text>}
+        {props.loading ? (
+          <ActivityIndicator size="small" />
+        ) : (
+          <Text style={styles.secondaryButtonText}>{props.children}</Text>
+        )}
       </View>
     </TouchableOpacity>
   );
@@ -57,8 +73,8 @@ const styles = StyleSheet.create({
   secondaryButtonContainer: {
     justifyContent: "center",
     alignItems: "center",
-    width: "100%",
     borderRadius: 3,
+    width: "100%",
     paddingVertical: 24
   },
   secondaryButtonText: {

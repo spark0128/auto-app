@@ -4,25 +4,32 @@ import { ListItemOptions, ListItemOptionsViewAll } from "./ListItemOptions";
 
 export function Options(props) {
   const navigationUrl = [
+    "https://s3-ap-southeast-1.amazonaws.com/cdn.automate-kh.com/assets/images/options/navigation.png",
     "https://s3-ap-southeast-1.amazonaws.com/cdn.automate-kh.com/assets/images/options/navigation_highlight.png"
   ];
   const blackboxUrl = [
-    "https://s3-ap-southeast-1.amazonaws.com/cdn.automate-kh.com/assets/images/options/blackbox.png"
+    "https://s3-ap-southeast-1.amazonaws.com/cdn.automate-kh.com/assets/images/options/blackbox.png",
+    "https://s3-ap-southeast-1.amazonaws.com/cdn.automate-kh.com/assets/images/options/blackbox_highlight.png"
   ];
   const smartKeyUrl = [
+    "https://s3-ap-southeast-1.amazonaws.com/cdn.automate-kh.com/assets/images/options/smart_key.png",
     "https://s3-ap-southeast-1.amazonaws.com/cdn.automate-kh.com/assets/images/options/smart_key_highlight.png"
   ];
   const sunroofUrl = [
+    "https://s3-ap-southeast-1.amazonaws.com/cdn.automate-kh.com/assets/images/options/sunroof.png",
     "https://s3-ap-southeast-1.amazonaws.com/cdn.automate-kh.com/assets/images/options/sunroof_highlight.png"
   ];
   const rearSensorUrl = [
+    "https://s3-ap-southeast-1.amazonaws.com/cdn.automate-kh.com/assets/images/options/rear_sensor.png",
     "https://s3-ap-southeast-1.amazonaws.com/cdn.automate-kh.com/assets/images/options/rear_sensor_highlight.png"
   ];
   const rearCameraUrl = [
-    "https://s3-ap-southeast-1.amazonaws.com/cdn.automate-kh.com/assets/images/options/rear_camera.png"
+    "https://s3-ap-southeast-1.amazonaws.com/cdn.automate-kh.com/assets/images/options/rear_camera.png",
+    "https://s3-ap-southeast-1.amazonaws.com/cdn.automate-kh.com/assets/images/options/rear_camera_highlight.png"
   ];
   const bluetoothUrl = [
-    "https://s3-ap-southeast-1.amazonaws.com/cdn.automate-kh.com/assets/images/options/bluetooth.png"
+    "https://s3-ap-southeast-1.amazonaws.com/cdn.automate-kh.com/assets/images/options/bluetooth.png",
+    "https://s3-ap-southeast-1.amazonaws.com/cdn.automate-kh.com/assets/images/options/bluetooth_highlight.png"
   ];
 
   const [navigation, setNavigation] = useState(navigationUrl[0]);
@@ -56,7 +63,7 @@ export function Options(props) {
 const styles = StyleSheet.create({
   container: {
     flexDirection: "row",
-    justifyContent: "center",
+    justifyContent: "space-between",
     flexWrap: "wrap"
   }
 });

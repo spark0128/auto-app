@@ -145,7 +145,7 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     borderColor: "#DADADA",
     borderRadius: 3,
-    height: 80,
+    height: 75,
     paddingHorizontal: 13,
     justifyContent: "center"
   },
@@ -161,7 +161,8 @@ const styles = StyleSheet.create({
   divider: {
     width: "100%",
     height: 1,
-    backgroundColor: "#DADADA"
+    backgroundColor: "#DADADA",
+    marginBottom: 5
   },
   textInputCarDescContainer: {
     height: 238,
